@@ -1,0 +1,80 @@
+/**
+ * \defgroup tres_base T-Res base package
+ *
+ * Define abstractions and factories, basic utility capabilities (string parsing),
+ * simulator-independent functionality for the simulation of RTOSs and COM Networks,
+ * and a basic exception-handling mechanism
+ */
+
+/**
+ * \defgroup tres_base_rtos_abstractions Abstract classes (RTOS)
+ *
+ * Define abstractions that are specific to the RTOS domain (RTOS scheduling, events,
+ * etc.) that clients (Simulink, etc.) use
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_base_network_abstractions Abstract classes (COM Network)
+ *
+ * Define abstractions that are specific to the COM Network domain (network transmission,
+ * protocols, events, etc.) that clients (Simulink, etc.) use
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_base_rtos Base functionality (RTOS)
+ *
+ * Define classes that provide (simulator-independent) functionality related to RTOS
+ * scheduling simulation
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_base_network Base functionality (COM network)
+ *
+ * Define classes that provide (simulator-independent) functionality related to COM
+ * Network simulation
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_factories Factories
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_utils Utility classes
+ *
+ * \ingroup tres_base
+ */
+
+/**
+ * \defgroup tres_implementations T-Res concrete implementations package
+ *
+ * Define concrete implementations of T-Res abstractions on top of 3rd-party simulators
+ * (RT scheduling, COM Network)
+ */
+
+/**
+ * \defgroup tres_impl_rtos Adapters (RTOS simulators)
+ *
+ * Define concrete implementations of classes in \ref tres_base_rtos_abstractions on top
+ * of 3rd-party RT scheduling simulators (object adapter pattern)
+ *
+ * \ingroup tres_implementations
+ */
+
+/**
+ * \defgroup tres_impl_network Adapters (COM Network simulators)
+ *
+ * Define concrete implementations of classes in \ref tres_base_network_abstractions on
+ * top of 3rd-party COM Network simulators
+ *
+ * \ingroup tres_implementations
+ */

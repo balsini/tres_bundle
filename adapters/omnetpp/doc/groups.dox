@@ -1,0 +1,7 @@
+/**
+ * \defgroup tres_omnetpp T-Res/OMNeT++
+ * Define an implementation of classes in \ref tres_base_network_abstractions on top
+ * of the OMNeT++(/OMNEST) network simulator
+ *
+ * \ingroup tres_impl_network
+ */

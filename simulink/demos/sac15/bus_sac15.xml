@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<NodeInfo>
+   <Node ID="ECU">
+       <SendMessage ID="11a" SendInterval="4" SendTime="0" DLC="8" Offset="0"/>
+  </Node>
+   <Node ID="SmartServos">
+       <SendMessage ID="11b" SendInterval="4" SendTime="0" DLC="8" Offset="0"/>
+   </Node>
+</NodeInfo>

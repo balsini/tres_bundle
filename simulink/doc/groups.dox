@@ -1,0 +1,7 @@
+/**
+ * \defgroup tres_simulink T-Res bindings for Simulink
+ * Define Simulink blocks to perform RT scheduling, network communication and control logics co-simulation.
+ * Simulink blocks use the interface classes in \ref tres_base_rtos_abstractions, and are bound to
+ * concrete implementation of these classes (\ref tres_implementations) through the application of the
+ * Factory method pattern
+ */

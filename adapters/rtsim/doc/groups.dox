@@ -1,0 +1,7 @@
+/**
+ * \defgroup tres_rtsim T-Res/RTSim
+ * Define an implementation of classes in \ref tres_base_rtos_abstractions on top
+ * of the RTSim RT scheduling simulator
+ *
+ * \ingroup tres_impl_rtos
+ */

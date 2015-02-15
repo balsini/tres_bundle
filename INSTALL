@@ -1,0 +1,50 @@
+               T-Res Installation and Quick-Start Steps
+               ========================================
+
+Set-up the root directory of the tres_bundle project
+
+    $ TRES_BUNDLE_DIR=/path/to/tres_bundle
+
+Then add the tres_bundle's libs to the run-time library path for your Unix
+environment
+
+    $ echo "source $TRES_BUNDLE_DIR/tres-setup.bash" >> ~/.bashrc
+    $ source ~/.bashrc
+
+Now build the OMNeT++ distribution that is shipped along with tres_bundle
+
+    $ cd $TRES_BUNDLE_DIR/3rdparty/omnetpp
+    $ ./configure         # may fail if not all the OMNeT++ deps are met
+    $ make MODE=debug     # will take some time
+    $ cd inet
+    $ make makefiles
+    $ make clean          # important, don't skip!
+    $ make MODE=debug     # will take even more time
+
+Use CMake to build the rest of tres_bundle (except for tres_simulink, see below)
+
+    $ cd $TRES_BUNDLE_DIR/build
+    $ cmake ..
+    $ make      # it takes time, but not that much...
+
+Start MATLAB and type the following commands in the MATLAB prompt to build
+tres_simulink
+
+    >> cd (getenv('TRES_SIMULINK_DIR'));
+    >> build_tres_simulink;
+
+Finally, add tres_simulink to the MATLAB search path
+
+    >> load_tres_simulink;
+
+To avoid typing this command at every new MATLAB session, save the new search
+path manually using 'savepath' or the 'Set Path' dialog box (note that this
+operation may require administrator-level permissions, see
+http://www.mathworks.com/help/matlab/ref/savepath.html).
+
+That's all. You can start enjoying T-Res, e.g., running its demos. Note that
+demos generate a number of log files for debugging purposes. Browse the 'demos/'
+folder and run a demo from its own folder to keep clean your dev environment.
+Most demos are self-contained. Two demos ('quadrotor' and 'tt_threservos') have
+3rd-party dependencies. Details on how to manage them can be found at
+http://retis.sssup.it/tres/docs/
