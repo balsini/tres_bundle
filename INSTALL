@@ -11,6 +11,17 @@ environment
     $ echo "source $TRES_BUNDLE_DIR/tres-setup.bash" >> ~/.bashrc
     $ source ~/.bashrc
 
+If you cloned the tres_bundle project from github, you'll need to download
+the source code of 3rdparty dependencies for T-Res (RTSim and OMNeT++)
+
+    $ cd $TRES_BUNDLE_DIR
+    $ wget https://www.dropbox.com/s/20a4c2q78cr1o1e/tres_bundle_3rdparty.zip
+    $ unzip tres_bundle_3rdparty.zip
+    $ rm tres_bundle_3rdparty.zip
+
+The source-code release available from http://retis.sssup.it/tres/download.html
+already includes the 3rdparty dependences.
+
 Now build the OMNeT++ distribution that is shipped along with tres_bundle
 
     $ cd $TRES_BUNDLE_DIR/3rdparty/omnetpp
@@ -46,5 +57,5 @@ That's all. You can start enjoying T-Res, e.g., running its demos. Note that
 demos generate a number of log files for debugging purposes. Browse the 'demos/'
 folder and run a demo from its own folder to keep clean your dev environment.
 Most demos are self-contained. Two demos ('quadrotor' and 'tt_threservos') have
-3rd-party dependencies. Details on how to manage them can be found at
+additional 3rd-party dependencies. Details on how to manage them can be found at
 http://retis.sssup.it/tres/docs/
