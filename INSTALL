@@ -5,8 +5,14 @@ Set-up the root directory of the tres_bundle project
 
     $ TRES_BUNDLE_DIR=/path/to/tres_bundle
 
-Then add the tres_bundle's libs to the run-time library path for your Unix
-environment
+If you are on OSX, enable your terminal to load the .bashrc file (see
+http://apple.stackexchange.com/questions/119711/why-mac-os-x-dont-source-bashrc
+for more details)
+
+    $ echo "source ~/.bashrc" >> .bash_profile
+
+Then add the tres_bundle's libs to the run-time library path for your
+environment (OSX or Linux)
 
     $ echo "source $TRES_BUNDLE_DIR/tres-setup.bash" >> ~/.bashrc
     $ source ~/.bashrc
