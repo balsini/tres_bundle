@@ -66,11 +66,6 @@ namespace tres
          */
         CanEventOpp(const int);
 
-        /**
-         * \brief The virtual destructor
-         */
-        virtual ~CanEventOpp() = default;
-
         virtual bool isGeneratedByAppLevelTraffic();
 
         virtual SimMessage* getGeneratorMessage();
