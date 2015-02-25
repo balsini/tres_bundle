@@ -67,7 +67,7 @@
 #include <simtime.h>
 
 #include <tres/Factory.hpp>
-#include <boost/tokenizer.hpp> // FIXME use tres::ParseUtils.hpp
+#include <tres/ParseUtils.hpp>
 #include "NetworkOpp.hpp"
 
 Register_GlobalConfigOption(CFGID_LOAD_LIBS, "load-libs", CFG_FILENAMES, "", "A space-separated list of dynamic libraries to be loaded on startup. The libraries should be given without the `.dll' or `.so' suffix -- that will be automatically appended.");
@@ -172,10 +172,10 @@ namespace tres
         for (int i = 0; i < num_msgs; i++)
         {
             // Tokenize the message description
-            using namespace boost;
-            char_separator<char> sep(";");
-            tokenizer<char_separator<char>> tokens(*(it++), sep);
-            tokenizer<char_separator<char>>::iterator jt = tokens.begin();
+            using namespace tres_parse_utils;
+            std::vector<std::string> tokens = split_instr(*(it++));
+            std::vector<std::string>::iterator jt = tokens.begin();
+
             // Assign message types (msg_types must contain unique values)
             if(_tmpset.insert(*jt).second)
                 msg_types.push_back(*jt);
@@ -192,10 +192,10 @@ namespace tres
         for (int i = 0; i < num_ndescr; i++)
         {
             // Tokenize the message description
-            using namespace boost;
-            char_separator<char> sep(";");
-            tokenizer<char_separator<char>> tokens(*(it++), sep);
-            tokenizer<char_separator<char>>::iterator jt = tokens.begin();
+            using namespace tres_parse_utils;
+            std::vector<std::string> tokens = split_instr(*(it++));
+            std::vector<std::string>::iterator jt = tokens.begin();
+
             // Get the description information
             if (*jt == "nedpath")
                 opp_params.push_back("-n");
