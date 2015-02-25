@@ -64,11 +64,6 @@ namespace tres
          */
         static Segment* createInstance(std::vector<std::string>&);
 
-        /**
-         * \brief The virtual destructor
-         */
-        virtual ~FixedExecSegment() = default;
-
     };
     /** @} */
 }

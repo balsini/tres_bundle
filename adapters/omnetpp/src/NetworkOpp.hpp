@@ -135,7 +135,7 @@ namespace tres
         /**
          * \brief The destructor
          */
-        virtual ~NetworkOpp();
+        virtual ~NetworkOpp() noexcept(true);
 
         virtual void processNextEvent();
 

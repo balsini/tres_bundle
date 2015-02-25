@@ -130,7 +130,7 @@ namespace tres
         }
     }
 
-    KernelRtSim::~KernelRtSim()
+    KernelRtSim::~KernelRtSim() noexcept(true)
     {
         for (unsigned int i = 0; i < _rts_tasks.size(); i++)
             delete _rts_tasks[i];

@@ -36,6 +36,10 @@ namespace tres
      */
     /**
      * \brief Object adapter for RTSim tasks
+     *
+     * \note Inherits the default implementation of destructor from its base class.
+     * That's fine because the adaptee object exists in RTSim and its correct
+     * destruction is performed by RTSim
      */
     class SimTaskRtSim : public tres::SimTask
     {
@@ -48,14 +52,6 @@ namespace tres
          * \brief Default constructor
          */
         SimTaskRtSim();
-
-        /**
-         * \brief The virtual destructor
-         *
-         * \note Default implementation is fine because the adaptee object
-         * exists in RTSim and its correct destruction is performed by RTSim
-         */
-        virtual ~SimTaskRtSim() = default;
 
         virtual std::string getUID() const;
 

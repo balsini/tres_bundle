@@ -51,6 +51,10 @@ namespace tres
      */
     /**
      * \brief Object adapter for OMNeT++ events
+     *
+     * \note Inherits the default implementation of destructor from its base class.
+     * That's fine because the adaptee object exists in OMNeT++ and its correct
+     * destruction is performed by OMNeT++
      */
     class EventOpp : public NetworkEvent
     {
@@ -58,14 +62,6 @@ namespace tres
         friend class NetworkOpp;
 
     public:
-
-        /**
-         * \brief The virtual destructor
-         *
-         * \note Default implementation is fine because the adaptee object
-         * exists in OMNeT++, which performs its correct destruction
-         */
-        virtual ~EventOpp() = default;
 
         virtual std::string getName() const;
 

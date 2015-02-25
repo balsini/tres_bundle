@@ -53,6 +53,10 @@ namespace tres
      */
     /**
      * \brief Object adapter for OMNeT++-based network messages
+     *
+     * \note Inherits the default implementation of destructor from its base class.
+     * That's fine because the adaptee object exists in OMNeT++ and its correct
+     * destruction is performed by OMNeT++
      */
     class SimMessageOpp : public SimMessage
     {
@@ -70,11 +74,6 @@ namespace tres
          * \brief Construct from external parameters
          */
         SimMessageOpp(cMessage*);
-
-        /**
-         * \brief The virtual destructor
-         */
-        virtual ~SimMessageOpp() = default;
 
         /**
          * \brief Set the value of an helper flag to help detecting whether a message

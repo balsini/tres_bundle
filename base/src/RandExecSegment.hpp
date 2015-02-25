@@ -76,11 +76,6 @@ namespace tres
         static Segment* createInstance(std::vector<std::string>&);
 
         /**
-         * \brief The virtual destructor
-         */
-        virtual ~RandExecSegment() = default;
-
-        /**
          * Get the worst-case execution time for this instruction
          */
         virtual double getWCET() const;

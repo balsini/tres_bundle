@@ -53,7 +53,7 @@ namespace tres
         /**
          * \brief The destructor
          */
-        virtual ~KernelRtSim();
+        virtual ~KernelRtSim() noexcept(true);
 
         /**
          * \brief RTSim-specific implementation of the initialization-hook procedure

@@ -373,7 +373,7 @@ namespace tres
 
     }
 
-    NetworkOpp::~NetworkOpp()
+    NetworkOpp::~NetworkOpp() noexcept(true)
     {
         // shutdown
         app->sim_stop();

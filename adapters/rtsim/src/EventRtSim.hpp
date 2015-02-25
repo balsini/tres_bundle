@@ -37,6 +37,10 @@ namespace tres
      */
     /**
      * \brief Object adapter for RTSim events
+     *
+     * \note Inherits the default implementation of destructor from its base class.
+     * That's fine because the adaptee object exists in RTSim and its correct
+     * destruction is performed by RTSim
      */
     class EventRtSim : public tres::RTOSEvent
     {
@@ -49,14 +53,6 @@ namespace tres
          * \brief Default constructor
          */
         EventRtSim();
-
-        /**
-         * \brief The virtual destructor
-         *
-         * \note Default implementation is fine because the adaptee object
-         * exists in RTSim and its correct destruction is performed by RTSim
-         */
-        virtual ~EventRtSim() = default;
 
         virtual std::string getName() const;
 
