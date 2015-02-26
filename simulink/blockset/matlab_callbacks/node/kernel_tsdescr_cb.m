@@ -46,7 +46,9 @@ function kernel_tsdescr_cb(blk)
     % Check all the elements of 2nd (iat = interarrival time),
     % 3rd (rdl = relative deadline) and
     % 4th (ph = phase) columns are numbers
-    if ~all(cellfun(@(x) tsdescr_elem_is_number(x), ts_descr(:,2:4))),
+    % iat and rdl must also be strictly > 0
+    iat_rdl_isnum_matrix = cellfun(@(x) tsdescr_elem_is_number(x), ts_descr(:,2:3));
+    if ~all(iat_rdl_isnum_matrix(:)) || ~all(cellfun(@(x) tsdescr_elem_is_number(x,true), ts_descr(:,4))),
         errordlg('The task-set description variable must have numeric elements in the column range 2:4', 'T-Res Kernel Error');
         return;
     end
