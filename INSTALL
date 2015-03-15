@@ -9,7 +9,7 @@ If you are on OSX, enable your terminal to load the .bashrc file (see
 http://apple.stackexchange.com/questions/119711/why-mac-os-x-dont-source-bashrc
 for more details)
 
-    $ echo "source ~/.bashrc" >> .bash_profile
+    $ echo "source ~/.bashrc" >> ~/.bash_profile
 
 Then add the tres_bundle's libs to the run-time library path for your
 environment (OSX or Linux)
@@ -17,16 +17,13 @@ environment (OSX or Linux)
     $ echo "source $TRES_BUNDLE_DIR/tres-setup.bash" >> ~/.bashrc
     $ source ~/.bashrc
 
-If you cloned the tres_bundle project from github, you'll need to download
-the source code of 3rdparty dependencies for T-Res (RTSim and OMNeT++)
+Download the source code of 3rdparty dependencies for T-Res (RTSim and OMNeT++)
 
     $ cd $TRES_BUNDLE_DIR
-    $ wget https://www.dropbox.com/s/20a4c2q78cr1o1e/tres_bundle_3rdparty.zip
+    $ wget https://www.dropbox.com/s/20a4c2q78cr1o1e/tres_bundle_3rdparty.zip \
+       --no-check-certificate -O tres_bundle_3rdparty.zip
     $ unzip tres_bundle_3rdparty.zip
     $ rm tres_bundle_3rdparty.zip
-
-The source-code release available from http://retis.sssup.it/tres/download.html
-already includes the 3rdparty dependences.
 
 Now build the OMNeT++ distribution that is shipped along with tres_bundle
 
@@ -40,12 +37,19 @@ Now build the OMNeT++ distribution that is shipped along with tres_bundle
 
 Use CMake to build the rest of tres_bundle (except for tres_simulink, see below)
 
-    $ cd $TRES_BUNDLE_DIR/build
+    $ cd $TRES_BUNDLE_DIR
+    $ mkdir build && cd build
     $ cmake ..
     $ make      # it takes time, but not that much...
 
-Start MATLAB and type the following commands in the MATLAB prompt to build
-tres_simulink
+Start MATLAB from your terminal instance
+
+    $ matlab
+
+Don't use launchers from the application bar or similar, because if you do so
+some important environment variables are not exported and T-Res cannot work.
+
+Type the following commands in the MATLAB prompt to build tres_simulink
 
     >> cd (getenv('TRES_SIMULINK_DIR'));
     >> build_tres_simulink;
