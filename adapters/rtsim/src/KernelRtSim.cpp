@@ -69,26 +69,29 @@ namespace tres
         int aper_req_idx = 0;
         for (std::vector<std::string>::size_type i = 0; i < ts_descr.size(); i++)
         {
-            // Build a task name
-            std::stringstream ss;
-            ss << "task " << i;
-
             // Get the task-set description parameters
-            std::vector<std::string> ts_parms = split_instr(ts_descr[i]);
-
-            // Build a suitable parameter vector for use with the factory
             //
-            // It is assumed as _guaranteed_ that the parameters in the i-th
+            // It is _guaranteed_ that the parameters in the i-th
             // entry of the ts_descr vector (which is provided by the caller)
             // are in the following order
+            //   - type (e.g., 'PeriodicTask', etc.)
+            //   - name
             //   - iat  (InterArrival Time)
             //   - rdl  (Relative DeadLine)
             //   - ph   (activation PHase)
             //
-            // That order matches the one required by the RTSim Task creator
-            // function. Therefore, the parameters can be given in that order
-            // to the creator function
-            std::vector<std::string> ts_fact(ts_parms.begin()+1, ts_parms.begin()+4);
+            // The order of name, iat, rdl and ph matches the one required by the
+            // RTSim Task creator function. Hence, the parameters can be given
+            // in that order to the creator function (see below).
+            //
+            std::vector<std::string> ts_parms = split_instr(ts_descr[i]);
+
+            // Get the task name
+            std::stringstream ss;
+            ss << ts_parms[1];
+
+            // Build a suitable parameter vector for use with the factory
+            std::vector<std::string> ts_fact(ts_parms.begin()+2, ts_parms.begin()+5);
 
             // Add the task name currently stored in the stringstream.
             // (This is required by the RTSim Task creator function)
@@ -96,7 +99,7 @@ namespace tres
 
             // **Build instance** (the RTSim Task)
             std::unique_ptr<RTSim::Task> task = Factory<RTSim::Task>::instance()
-                                                .create( ts_parms[0], ts_fact );
+                                                    .create( ts_parms[0], ts_fact );
             if (task.get() == NULL) throw std::runtime_error(ts_parms[0]);
             RTSim::Task *tsk = task.release();
 
@@ -121,8 +124,8 @@ namespace tres
             // The priority is only considered when a task is attached to
             // a FPSched Scheduler; in all the other cases it's ignored
             std::string tsk_prio("");
-            if (ts_parms.size() > 4)
-                tsk_prio = ts_parms[4];
+            if (ts_parms.size() > 5)
+                tsk_prio = ts_parms[5];
             _rts_kern->addTask(*tsk, tsk_prio);
 
             // Add the task to the list of handled tasks
@@ -178,17 +181,20 @@ namespace tres
                 // Keep the task type as is
                 ss << ts_parms[0] << ';';
 
-            // Modify IAT
-            ss << time_resolution*atof(ts_parms[1].c_str()) << ';';
+            // ts_parms[1] is the NAME -- DON'T MODIFY (Keep the task name as is)
+            ss << ts_parms[1] << ';';
 
-            // Modify RDL
+            // Modify IAT
             ss << time_resolution*atof(ts_parms[2].c_str()) << ';';
 
-            // Modify OFFSET
+            // Modify RDL
             ss << time_resolution*atof(ts_parms[3].c_str()) << ';';
 
+            // Modify OFFSET
+            ss << time_resolution*atof(ts_parms[4].c_str()) << ';';
+
             // Keep the rest as is
-            for (std::vector<std::string>::size_type j = 4; j < ts_parms.size(); j++)
+            for (std::vector<std::string>::size_type j = 5; j < ts_parms.size(); j++)
                 ss << ts_parms[j] << ';';
 
             mod_ts_descr.push_back(ss.str());
@@ -231,6 +237,8 @@ namespace tres
 
     void KernelRtSim::initializeSimulation(const double time_resolution, const double * const *c_time)
     {
+        //static int my_counter = 0; // XXX
+
         for (auto task = _rts_tasks.begin();
                     task != _rts_tasks.end();
                         ++task)
@@ -244,11 +252,14 @@ namespace tres
             // Flush the stream...
             ss.str(std::string());
         }
+
+        //if (my_counter++%2 == 1) { // XXX
         MetaSim::Simulation::getInstance().dbg.enable("All");
         MetaSim::Simulation::getInstance().dbg.setStream("debug.txt");
 
         MetaSim::Simulation::getInstance().initRuns();
         MetaSim::Simulation::getInstance().initSingleRun();
+        //} // XXX
     }
 
     void KernelRtSim::processNextEvent()
