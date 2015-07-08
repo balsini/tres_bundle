@@ -143,7 +143,15 @@ namespace tres
          */
         int getFlag(const std::string&);
 
+        /**
+         * \brief Get the name (univoque identifier) of the instance
+         */
+        const std::string& getName();
+
     protected:
+
+        /** Instance ID */
+        std::string _kernel_name;
 
         /** Map of the task-uid and (S/R)block-port correspondence */
         std::map<std::string, int> _task_port_map;

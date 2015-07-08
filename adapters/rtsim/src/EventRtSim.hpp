@@ -73,6 +73,13 @@ namespace tres
 
     protected:
 
+        /** Priority level representing the ECU (run by a kernel) which
+         * the RtSim event occurs onto
+         *
+         * \note It's used by tres::KernelRtSim, which is a friend of this class
+         */
+        int _priority_level;
+
         /** The base RTOS event representation in RTSim (Adaptee) */
         MetaSim::Event *_ms_evt;
 

@@ -25,16 +25,56 @@
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
+#include <exeinstr.hpp>  // TODO: RTSim must manage instructions priorities 
 #include <rmsched.hpp>   // RTSim::RMScheduler (does not have a creator fct)
 #include <mrtkernel.hpp> // RTSim::MRTKernel
 #include <tres/Factory.hpp>
 #include <tres/ParseUtils.hpp>
 #include <tres_rtsim/KernelRtSim.hpp>
+#include "ActiveSimulationManagerRtSim.hpp"
 
 namespace tres
 {
-    KernelRtSim::KernelRtSim(const std::string& sp_descr, const int num_cores, const std::vector<std::string>& ts_descr)
+    struct _EmptyEntity
     {
+        // empty data
+
+        // basic methods
+        _EmptyEntity();
+        ~_EmptyEntity();
+    };
+    _EmptyEntity::_EmptyEntity()
+    {
+    }
+    _EmptyEntity::~_EmptyEntity()
+    {
+    }
+
+    class _DummyEvent : public MetaSim::GEvent<_EmptyEntity>
+    {
+    public:
+        void _setTime(MetaSim::Tick actTime) throw (Exc);
+    };
+    void _DummyEvent::_setTime(MetaSim::Tick actTime) throw(Exc)
+    {
+        this->setTime(actTime);
+    }
+
+    void KernelRtSim::initializePriorityLevel()
+    {
+        _priority_level = ActiveSimulationManagerRtSim::getInstance().getPriorityLevel(getName());
+        _next_event._priority_level = _priority_level;
+        _next_event._gen_task._priority_level = _priority_level;
+    }
+
+    KernelRtSim::KernelRtSim(const std::string& kuid, const std::string& sp_descr, const int num_cores, const std::vector<std::string>& ts_descr)
+    {
+        // Give the instance the UID provided by the caller and
+        // Initialize the priority level to identify the related events
+        // (of tasks, scheduling, instructions, ...) in the MetaSim queue
+        _kernel_name = kuid;
+        initializePriorityLevel();
+
         using namespace tres_parse_utils;
 
         // Get the sched. policy description parameters
@@ -57,13 +97,34 @@ namespace tres
 
         // **Build instance** (the RTSim Kernel, single-/multi-core)
         if (num_cores > 1)
+        {
             _rts_kern = new RTSim::MRTKernel(_rts_sched, num_cores);
+            // FIXME
+            // define a RTSim::MRTKernel::setEvtsPriority() method to set the
+            // priority of managed events accordingly
+        }
         else
+        {
             _rts_kern = new RTSim::RTKernel(_rts_sched);
+            // TODO
+            // The following lines shouldn't be here. Managing the priority of an
+            // added instruction should be taken into account by RTSim
+            // (define a RTSim::RTKernel::setEvtsPriority() method)
+            _rts_kern->beginDispatchEvt.setPriority(_priority_level +
+                                                                _rts_kern->beginDispatchEvt.getPriority());
+            _rts_kern->endDispatchEvt.setPriority(_priority_level +
+                                                                _rts_kern->endDispatchEvt.getPriority());
+            ////////////////////////////////////////////////////////////////////
+        }
 
         // **Build instances** (the RTSim Tracers)
-        ttrace = new RTSim::TextTrace("trace.txt");
-        jtrace = new RTSim::JavaTrace("trace.trc");
+        std::stringstream ss;
+        ss << "trace-" << _priority_level << ".txt";
+        ttrace = new RTSim::TextTrace(ss.str());
+        ss.str(std::string());  // Flush the ss
+        ss << "trace-" << _priority_level << ".trc";
+        jtrace = new RTSim::JavaTrace(ss.str().c_str());
+        ss.str(std::string());  // Flush the ss
 
         // Manage tasks in the task-set
         int aper_req_idx = 0;
@@ -103,6 +164,18 @@ namespace tres
             if (task.get() == NULL) throw std::runtime_error(ts_parms[0]);
             RTSim::Task *tsk = task.release();
 
+            // TODO
+            // The following lines shouldn't be here. Managing the priority of an
+            // added instruction should be taken into account by RTSim
+            // (RTSim::RTKernel::addTask(), see below) 
+            tsk->arrEvt.setPriority(_priority_level + tsk->arrEvt.getPriority());
+            tsk->endEvt.setPriority(_priority_level + tsk->endEvt.getPriority());
+            tsk->schedEvt.setPriority(_priority_level + tsk->schedEvt.getPriority());
+            tsk->deschedEvt.setPriority(_priority_level + tsk->deschedEvt.getPriority());
+            tsk->fakeArrEvt.setPriority(_priority_level + tsk->fakeArrEvt.getPriority());
+            tsk->deadEvt.setPriority(_priority_level + tsk->deadEvt.getPriority());
+            ////////////////////////////////////////////////////////////////////
+
             // Attach the Tracers
             ttrace->attachToTask(tsk);
             tsk->setTrace(jtrace);
@@ -138,10 +211,15 @@ namespace tres
         for (unsigned int i = 0; i < _rts_tasks.size(); i++)
             delete _rts_tasks[i];
         delete _rts_sched;
-        delete _rts_kern;        
-        MetaSim::Simulation::getInstance().clearEventQueue();
+        delete _rts_kern;
         delete ttrace;
         delete jtrace;
+        ActiveSimulationManagerRtSim::getInstance().registerKernel(getName());
+        if ( ActiveSimulationManagerRtSim::getInstance().kernelsReady() )
+        {
+            MetaSim::Simulation::getInstance().clearEventQueue();
+            ActiveSimulationManagerRtSim::reset();
+        }
     }
 
     tres::Kernel* KernelRtSim::createInstance(std::vector<std::string>& par)
@@ -152,6 +230,7 @@ namespace tres
         //  - the scheduling policy description            - std::string (1)
         //  - the number of CPU cores                      - std::string (1)
         //  - the time resolution                          - std::string (1)
+        //  - the name (UID) of the kernel instance        - std::string (1)
         //                                                                        <-- vector.end()
         using namespace tres_parse_utils;
         std::vector<std::string>::iterator it;  // Convenience iterator
@@ -159,8 +238,11 @@ namespace tres
         // Get the number of tasks
         int num_tasks = atoi(par[0].c_str());
 
+        // Get the instance UID
+        std::string kuid = *(par.end() - 1);
+
         // Get the time resolution
-        it = par.end() - 1;
+        it = par.end() - 2;
         double time_resolution = atof((*it).c_str());
 
         // Modify the task-set description
@@ -228,17 +310,14 @@ namespace tres
         ss.str(std::string());  // Flush the ss
 
         // Get the number of CPU cores
-        it = par.end() - 2;
-        int num_cores = atoi((*it).c_str());
+        int num_cores = atoi( (*(++it)).c_str() );
 
         // Finally, construct the object
-        return new KernelRtSim(sp_descr, num_cores, mod_ts_descr);
+        return new KernelRtSim(kuid, sp_descr, num_cores, mod_ts_descr);
     }
 
     void KernelRtSim::initializeSimulation(const double time_resolution, const double * const *c_time)
     {
-        //static int my_counter = 0; // XXX
-
         for (auto task = _rts_tasks.begin();
                     task != _rts_tasks.end();
                         ++task)
@@ -249,17 +328,35 @@ namespace tres
             // Add the pseudoinstruction to the task's instruction_q
             (*task)->insertCode(ss.str());
 
+            // TODO
+            // The following lines shouldn't be here. Managing the priority of an
+            // added instruction should be taken into account by RTSim (insertCode())
+            if (_priority_level > 0)
+            {
+                auto p = (*task)->getInstrQueue().end() - 1;
+                if ( dynamic_cast<RTSim::ExecInstr*>(*p) )
+                {
+                    RTSim::ExecInstr* rts_ei = dynamic_cast<RTSim::ExecInstr*>(*p);
+                    rts_ei->_endEvt.setPriority(_priority_level + rts_ei->_endEvt.getPriority());
+                }
+                // XXX
+                // Is RTSim::ExecInstr the only kind of instruction with events
+                // to be managed with priorities?
+            }
+            ////////////////////////////////////////////////////////////////////
+
             // Flush the stream...
             ss.str(std::string());
         }
 
-        //if (my_counter++%2 == 1) { // XXX
-        MetaSim::Simulation::getInstance().dbg.enable("All");
-        MetaSim::Simulation::getInstance().dbg.setStream("debug.txt");
-
-        MetaSim::Simulation::getInstance().initRuns();
-        MetaSim::Simulation::getInstance().initSingleRun();
-        //} // XXX
+        ActiveSimulationManagerRtSim::getInstance().registerKernel(getName());
+        if ( ActiveSimulationManagerRtSim::getInstance().kernelsReady() )
+        {
+            MetaSim::Simulation::getInstance().dbg.enable("All");
+            MetaSim::Simulation::getInstance().dbg.setStream("debug.txt");
+            MetaSim::Simulation::getInstance().initRuns();
+            MetaSim::Simulation::getInstance().initSingleRun();
+        }
     }
 
     void KernelRtSim::processNextEvent()
@@ -275,12 +372,69 @@ namespace tres
 
     int KernelRtSim::getTimeOfNextEvent()
     {
-        return (MetaSim::Event::getFirst()->getTime());
+        // FIXME
+        // Searching for the NextWakeUpTime (NWUT) here is terribly inefficient!
+        // Design a mechanism to search for the NWUT one time and store it, so
+        // that subsequent requests can be accommodate immediately
+        MetaSim::Event* ms_evt = MetaSim::Event::getFirst();
+        if ( (ms_evt->getPriority() < _priority_level) ||
+                (ms_evt->getPriority() >= _priority_level+50) )
+            return getNextWakeUpTime();
+        return ms_evt->getTime();
     }
 
     int KernelRtSim::getNextWakeUpTime()
     {
-        return (getTimeOfNextEvent());
+        // Get useful info about priorities
+        int max_priority_level = ActiveSimulationManagerRtSim::getInstance().getMaxPriorityLevel();
+        int priority_bias = ActiveSimulationManagerRtSim::getInstance().getPriorityBias();
+
+        // Read the occurrence time for the very first incoming event in the queue
+        // It may be, or not, related to this kernel
+        int evt_priority = MetaSim::Event::getFirst()->getPriority();
+        int immediate_next_time = MetaSim::Event::getFirst()->getTime();
+
+        // If it's on this kernel, i.e,
+        // evt_priority \in [_priority_level, _priority_level+priority_bias),
+        // then return immediately
+        if ( (evt_priority >= _priority_level) &&
+                (evt_priority < priority_bias+_priority_level) )
+            return immediate_next_time;
+
+        // Otherwise, we have 2 possibilities:
+        // 1. evt_priority < _priority_level
+        // 2. evt_priority >= _priority_level+priority_bias
+        //
+        // In any case, prepare an instance of DummyEvent to skip every event
+        // in the queue occurring on other kernels
+        _DummyEvent de;
+        MetaSim::Event::EventQueue::const_iterator it;
+        de._setTime(immediate_next_time);
+        do
+        {
+            // Consider the two possibilities and do the right thing
+            if (evt_priority < _priority_level) // 1.
+            {
+                de.setPriority(_priority_level);
+                it = MetaSim::Event::_eventQueue.lower_bound(&de);
+            }
+            else                                // 2.
+            {
+                de.setPriority(max_priority_level+priority_bias);
+                it = MetaSim::Event::_eventQueue.upper_bound(&de);
+            }
+
+            // Read the priority level of new next event and set its
+            // occurrence time
+            evt_priority = (*it)->getPriority();
+            de._setTime((*it)->getTime());
+        }
+        // Repeat until the next event is onto this kernel
+        while( !((evt_priority >= _priority_level) &&
+                      (evt_priority < priority_bias+_priority_level)) );
+
+        // At this point, return
+        return (de.getTime());
     }
 
     void KernelRtSim::getRunningTasks()
@@ -293,6 +447,11 @@ namespace tres
     {
         int num_aper_activs = aper_activ_idx.size();
         RTSim::Task* aper_task;
+
+        // FIXME
+        // Manage the priority of aperiodic task's events!
+        // (Again, it should be done RTSim-side...)
+
         for (int i = 0; i < num_aper_activs; ++i)
         {
             aper_task = _rts_tasks[_aper_req_task_map[aper_activ_idx[i]]];

@@ -91,4 +91,9 @@ namespace tres
     {
         return _jobs_status[task];
     }
+
+    const std::string& Kernel::getName()
+    {
+        return _kernel_name;
+    }
 }

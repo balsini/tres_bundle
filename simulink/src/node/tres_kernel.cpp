@@ -209,6 +209,9 @@ static void mdlStart(SimStruct *S)
     // Build the list of parameters that configure the tres::Kernel
     std::vector<std::string> kern_params = readMaskAndBuildConfVector(S);
 
+    // Set a name (UID) for the current tres::Kernel instance
+    kern_params.push_back(std::string(ssGetPath(S)));
+
     // Get the type of the adapter, i.e., the concrete implementation of tres::Kernel
     bufSimEngLen = mxGetN( ssGetSFcnParam(S,SIMULATION_ENGINE) )+1;
     bufSimEng = new char[bufSimEngLen];
@@ -229,7 +232,8 @@ static void mdlStart(SimStruct *S)
                                                                 (InputBooleanPtrsType) ssGetInputPortSignalPtrs(S,1));
 
     // Get the time resolution (actually, its floating point representation)
-    std::vector<std::string>::iterator it = kern_params.end()-1;
+    // It is guaranteed to be at end()-2 position in the vector kern_params
+    std::vector<std::string>::iterator it = kern_params.end()-2;
     double time_resolution = atof((*it).c_str());
 
     // Save the time resolution to the real vector workspace
@@ -291,11 +295,13 @@ mexPrintf("\n*** Aperiodic activ(s) at time: %.3f***\n", ssGetT(S));
         kern->activateAperiodicTasks(aper_reqs_mgr->aper_activ_idx, ssGetT(S)*(time_resolution));
     }
 
-    // Save the time of next block hit
-    long int next_hit_tick = kern->getNextWakeUpTime();
+    // Save the time of the occurrence of the first incoming event 
+    long int first_incoming_evt_tick = kern->getTimeOfNextEvent();
+    // FIXME
+    double simulink_time = ssGetT(S);
 
-    // If the current time is greater or equal than the next block hit
-    if (ssGetT(S) - next_hit_tick/(time_resolution) >= 0.0)
+    // If the incoming event occurs in the present, i.e., at the current Simulink time
+    if (first_incoming_evt_tick/(time_resolution) - ssGetT(S) <= 0.0)
     {
         do
         {
@@ -349,7 +355,7 @@ mexPrintf("\n*** Aperiodic activ(s) at time: %.3f***\n", ssGetT(S));
             kern->processNextEvent();
 
         }
-        while ( kern->getTimeOfNextEvent() == next_hit_tick );
+        while ( kern->getTimeOfNextEvent() == first_incoming_evt_tick );
 
         // Update the list of running tasks
         kern->getRunningTasks();
@@ -403,7 +409,7 @@ static void mdlZeroCrossings(SimStruct *S)
 mexPrintf("\n%s at _time_: %.3f\n", __FUNCTION__, ssGetT(S));
 #endif
 
-    ssGetNonsampledZCs(S)[0] = kern->getTimeOfNextEvent()/(time_resolution) - ssGetT(S);
+    ssGetNonsampledZCs(S)[0] = kern->getNextWakeUpTime()/(time_resolution) - ssGetT(S);
 }
 
 /**
@@ -412,11 +418,11 @@ mexPrintf("\n%s at _time_: %.3f\n", __FUNCTION__, ssGetT(S));
  */
 static void mdlTerminate(SimStruct *S)
 {
-    mexPrintf("%s - %s @ %.3f\n", __FILE__, __FUNCTION__, ssGetT(S));
-
     // Get the C++ object back from the pointers vector
     tres::Kernel *kern = static_cast<tres::Kernel *>(ssGetPWork(S)[0]);
     _tres_kernel::_AperiodicReqsManager *aper_reqs_mgr = static_cast<_tres_kernel::_AperiodicReqsManager *>(ssGetPWork(S)[1]);
+
+    mexPrintf("%s - %s @ %.3f\n", kern->getName().c_str(), __FUNCTION__, ssGetT(S));
 
     // Call its destructor
     delete kern;

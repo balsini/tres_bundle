@@ -107,6 +107,10 @@ namespace tres
         /** Next RTSim engine event */
         EventRtSim _next_event;
 
+        /** Priority level in the MetaSim event queue (assigned by the
+         * \ref ActiveSimulationManagerRtSim singleton) */
+        int _priority_level;
+
         /**
          * \name RTSim tracers (for debugging purposes)
          * @{
@@ -132,7 +136,11 @@ namespace tres
         /**
          * \brief Construct from external parameters
          */
-        KernelRtSim(const std::string&, const int, const std::vector<std::string>&);
+        KernelRtSim(const std::string&, const std::string&, const int, const std::vector<std::string>&);
+
+        /** Helper function to initialize the priority level of the KernelRtSim
+         * instance and the owned events and tasks */
+        void initializePriorityLevel();
 
     };
     /** @} */
