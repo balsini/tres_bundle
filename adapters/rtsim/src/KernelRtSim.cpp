@@ -97,25 +97,10 @@ namespace tres
 
         // **Build instance** (the RTSim Kernel, single-/multi-core)
         if (num_cores > 1)
-        {
             _rts_kern = new RTSim::MRTKernel(_rts_sched, num_cores);
-            // FIXME
-            // define a RTSim::MRTKernel::setEvtsPriority() method to set the
-            // priority of managed events accordingly
-        }
         else
-        {
             _rts_kern = new RTSim::RTKernel(_rts_sched);
-            // TODO
-            // The following lines shouldn't be here. Managing the priority of an
-            // added instruction should be taken into account by RTSim
-            // (define a RTSim::RTKernel::setEvtsPriority() method)
-            _rts_kern->beginDispatchEvt.setPriority(_priority_level +
-                                                                _rts_kern->beginDispatchEvt.getPriority());
-            _rts_kern->endDispatchEvt.setPriority(_priority_level +
-                                                                _rts_kern->endDispatchEvt.getPriority());
-            ////////////////////////////////////////////////////////////////////
-        }
+        _rts_kern->setEvtPriorityLevel(_priority_level);
 
         // **Build instances** (the RTSim Tracers)
         std::stringstream ss;
@@ -455,7 +440,7 @@ namespace tres
         for (int i = 0; i < num_aper_activs; ++i)
         {
             aper_task = _rts_tasks[_aper_req_task_map[aper_activ_idx[i]]];
-            aper_task->arrEvt.post(sim_time);
+            aper_task->arrEvt.post(sim_time); // Comment!
         }
     }
 }
