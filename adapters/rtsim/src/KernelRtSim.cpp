@@ -394,6 +394,7 @@ namespace tres
         // in the queue occurring on other kernels
         _DummyEvent de;
         MetaSim::Event::EventQueue::const_iterator it;
+        bool not_past_the_end;
         de._setTime(immediate_next_time);
         do
         {
@@ -411,12 +412,16 @@ namespace tres
 
             // Read the priority level of new next event and set its
             // occurrence time
-            evt_priority = (*it)->getPriority();
-            de._setTime((*it)->getTime());
+            not_past_the_end = !(it == MetaSim::Event::_eventQueue.end());
+            if (not_past_the_end)
+            {
+                evt_priority = (*it)->getPriority();
+                de._setTime((*it)->getTime());
+            }
         }
         // Repeat until the next event is onto this kernel
         while( !((evt_priority >= _priority_level) &&
-                      (evt_priority < priority_bias+_priority_level)) );
+                      (evt_priority < priority_bias+_priority_level)) && (not_past_the_end) );
 
         // At this point, return
         return (de.getTime());
@@ -432,15 +437,12 @@ namespace tres
     {
         int num_aper_activs = aper_activ_idx.size();
         RTSim::Task* aper_task;
-
-        // FIXME
-        // Manage the priority of aperiodic task's events!
-        // (Again, it should be done RTSim-side...)
-
         for (int i = 0; i < num_aper_activs; ++i)
         {
             aper_task = _rts_tasks[_aper_req_task_map[aper_activ_idx[i]]];
-            aper_task->arrEvt.post(sim_time); // Comment!
+            aper_task->arrEvt.post(sim_time); // Don't need to set any priority level here
+                                              // It has already been done during task
+                                              // allocation in the c'tor
         }
     }
 }
