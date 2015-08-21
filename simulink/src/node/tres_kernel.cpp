@@ -189,6 +189,7 @@ static void mdlInitializeSampleTimes(SimStruct *S)
     int_T num_tasks = ssGetOutputPortWidth(S,0);
 
     // Initialize the Function Call output
+    ssSetExplicitFCSSCtrl(S, 1);
     for (int i = 0; i < num_tasks; i++)
         ssSetCallSystemOutput(S, i);
 }
@@ -267,6 +268,15 @@ static void mdlInitializeConditions(SimStruct *S)
 #define MDL_OUTPUT
 static void mdlOutputs(SimStruct *S, int_T tid)
 {
+    // Enable function-call subsystem at start of simulation
+    if (ssGetT(S) == 0)
+    {
+        int_T num_tasks = ssGetOutputPortWidth(S,0);
+        for (int i = 0; i < num_tasks; i++)
+            if (!ssEnableSystemWithTid(S, i, tid))
+                return;
+    }
+
     // Get ports access
     InputRealPtrsType  u = ssGetInputPortRealSignalPtrs(S,0);
     InputBooleanPtrsType aper_reqs = (InputBooleanPtrsType) ssGetInputPortSignalPtrs(S,1);
@@ -299,6 +309,8 @@ mexPrintf("\n*** Aperiodic activ(s) at time: %.3f***\n", ssGetT(S));
     long int first_incoming_evt_tick = kern->getTimeOfNextEvent();
     // FIXME
     double simulink_time = ssGetT(S);
+
+    mexPrintf( "%s, %s, major step  at %.16f\n", ssGetPath(S), __FUNCTION__, ssGetT(S) );
 
     // If the incoming event occurs in the present, i.e., at the current Simulink time
     if (first_incoming_evt_tick/(time_resolution) - ssGetT(S) <= 0.0)
@@ -371,6 +383,7 @@ mexPrintf("\n*** Aperiodic activ(s) at time: %.3f***\n", ssGetT(S));
 
         // For each Task to trigger, send a Function generation
         // signal onto the corresponding port
+        mexPrintf( "%s, %s, FIRING at time %.16f\n", ssGetPath(S), __FUNCTION__, ssGetT(S) );
         for (std::vector<int>::iterator port = ports.begin();
                 port != ports.end();
                     ++port)
@@ -380,15 +393,34 @@ mexPrintf("\n*** Aperiodic activ(s) at time: %.3f***\n", ssGetT(S));
     }
 }
 
-#if 0
 /**
  * \brief Model Update
  */
 #define MDL_UPDATE
 static void mdlUpdate(SimStruct *S, int_T tid)
 {
+    mexPrintf( "%s, %s, major step  at %.16f\n", ssGetPath(S), __FUNCTION__, ssGetT(S) );
+
+    // Get the C++ object back from the pointers vector
+    tres::Kernel *kern = static_cast<tres::Kernel *>(ssGetPWork(S)[0]);
+
+    // Read which tasks have to be triggered
+    std::vector<int> ports = kern->getPortsToTrigger();
+
+    // For each Task to trigger, send a Function generation
+    // signal onto the corresponding port
+    for (std::vector<int>::iterator port = ports.begin();
+        port != ports.end();
+            ++port)
+    {
+        mexPrintf( "%s, %s, resett. at time %.16f\n", ssGetPath(S), __FUNCTION__, ssGetT(S) );
+        ssDisableSystemWithTid(S, *port, tid);
+        ssEnableSystemWithTid(S, *port, tid);
+    }
+
+    // Update the internal state of the tres::Kernel struct for next step
+    kern->clearPortsToTrigger();
 }
-#endif
 
 /**
  * \brief Detect zero-crossing points
