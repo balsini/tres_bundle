@@ -131,12 +131,14 @@ namespace tres
 
         /**
          * \brief Return the a vector of block's ports to trigger in S/R implementation
-         *
-         * \note This function has side-effects, since the list of tasks scheduled for
-         * a new job execution (\ref _tasks_to_trigger, see below) gets cleared once the
-         * port indices are computed
          */
         std::vector<int> getPortsToTrigger();
+
+        /**
+         * \brief Clear the list of tasks scheduled for a new job execution
+         * (\ref _tasks_to_trigger, see below)
+         */
+        void clearPortsToTrigger();
 
         /**
          * \brief Get the job status for a given task

@@ -83,8 +83,13 @@ namespace tres
         {
             _ports.push_back(_task_port_map[*task]);
         }
-        _tasks_to_trigger.clear();
+        //_tasks_to_trigger.clear();
         return _ports;
+    }
+
+    void Kernel::clearPortsToTrigger()
+    {
+        _tasks_to_trigger.clear();
     }
 
     int Kernel::getFlag(const std::string& task)
