@@ -1,3 +1,6 @@
+include_directories(${METASIM_SOURCE_DIR}/src)
+include_directories(${RTLIB_SOURCE_DIR}/src)
+
 # Environment-based settings.
 if(WIN32)
     set(TRES_RTSIM_LIB_TYPE "STATIC")
