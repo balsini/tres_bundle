@@ -11,6 +11,7 @@ list(GET tres_rtsim_LIBRARIES 0 TRES_RTSIM_LIB_SOURCE)
 add_library(${TRES_RTSIM_LIB_SOURCE} ${TRES_RTSIM_LIB_TYPE} KernelRtSim.cpp
                                                             SimTaskRtSim.cpp
                                                             EventRtSim.cpp
+                                                            ActiveSimulationManagerRtSim.cpp
                                                             regsched.cpp
                                                             regtask.cpp)
 # Link the deps for the library

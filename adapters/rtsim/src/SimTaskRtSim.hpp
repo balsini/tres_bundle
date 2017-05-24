@@ -44,6 +44,7 @@ namespace tres
     class SimTaskRtSim : public tres::SimTask
     {
 
+        friend class KernelRtSim;
         friend class EventRtSim;
 
     public:
@@ -71,6 +72,13 @@ namespace tres
         virtual void setAdapteePtr(RTSim::Task*);
 
     protected:
+
+        /** Priority level representing the ECU (run by a kernel) which
+         * the RtSim task runs onto
+         *
+         * \note It's used by tres::KernelRtSim, which is a friend of this class
+         */
+        int _priority_level;
 
         /** The base RT task representation in RTSim (Adaptee) */
         RTSim::Task *_rts_task;

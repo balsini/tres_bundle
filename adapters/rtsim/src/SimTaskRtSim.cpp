@@ -23,8 +23,11 @@
  */
 
 #include <sstream>          // std::stringstream
-#include <instr.hpp>
+#include <vector>
+#include <instr.hpp>        // getActInstr()
+#include <exeinstr.hpp>     // TODO: RTSim must manage instructions priorities
 #include "SimTaskRtSim.hpp"
+#include "ActiveSimulationManagerRtSim.hpp"
 
 namespace tres
 {
@@ -60,21 +63,40 @@ namespace tres
 
         // Add the pseudoinstruction to the task's instruction_q
         _rts_task->insertCode(ss.str());
+        std::vector<RTSim::Instr*>::iterator it;
 
         // If task was empty
         if (was_empty)
         {
             // Make actInstr to actually point that instruction
             _rts_task->resetInstrQueue();
-            (*(_rts_task->getActInstr()))->reset();
+            it = _rts_task->getActInstr();
         }
         else
+            it = (_rts_task->getActInstr())+1;
+
+        // Initialize the pseudoinstruction. Needed!
+        // (because flag is left uninitialized in the ExecInstr() constructor)
+        (*(it))->reset();
+
+        // TODO
+        // The following lines shouldn't be here. Managing the priority of an
+        // added instruction should be taken into account by RTSim (insertCode())
+        //
+        // Take care to not reset priority levels in reset()!
+        if ( dynamic_cast<RTSim::ExecInstr*>(*it) )
         {
-            // Initialize the pseudoinstruction
-            // needed! (because flag is left uninitialized in the
-            // ExecInstr() constructor)
-            (*((_rts_task->getActInstr())+1))->reset();
+            RTSim::ExecInstr* rts_ei = dynamic_cast<RTSim::ExecInstr*>(*it);
+            int evt_priority = rts_ei->_endEvt.getPriority();
+            int priority_bias = ActiveSimulationManagerRtSim::getInstance().getPriorityBias();
+            if ( !((evt_priority >= _priority_level) &&
+                      (evt_priority < priority_bias+_priority_level)) )
+                rts_ei->_endEvt.setPriority(_priority_level + evt_priority);
         }
+        // XXX
+        // Is RTSim::ExecInstr the only kind of instruction with events
+        // to be managed with priorities?
+        ////////////////////////////////////////////////////////////////////////
 
         // Clear the stringstream
         ss.str(std::string());

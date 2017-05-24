@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.73"
+    ComputedModelVersion    "1.79"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -41,7 +41,7 @@ Model {
       $ObjectID		      3
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [238.0, 52.0, 936.0, 716.0]
+      Location		      [73.0, 157.0, 988.0, 837.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		4
@@ -65,9 +65,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[900.0, 569.0]
+	Extents			[932.0, 642.0]
 	ZoomFactor		[1.0]
-	Offset			[0.0, 0.0]
+	Offset			[5.5876128375530243, -13.878073543310165]
       }
     }
   }
@@ -75,11 +75,11 @@ Model {
   Creator		  "matteo"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "matteo"
+  LastModifiedBy	  "MM244911"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 12 05:03:10 2015"
-  RTWModifiedTimeStamp	  345616459
-  ModelVersionFormat	  "1.%<AutoIncrement:73>"
+  LastModifiedDate	  "Fri Aug 21 14:44:24 2015"
+  RTWModifiedTimeStamp	  362067058
+  ModelVersionFormat	  "1.%<AutoIncrement:79>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -812,6 +812,19 @@ Model {
       SampleTime	      "1"
     }
     Block {
+      BlockType		      EnablePort
+      StatesWhenEnabling      "held"
+      PropagateVarSize	      "Only when enabling"
+      ShowOutputPort	      off
+      ZeroCross		      on
+      PortDimensions	      "1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeStr	      "double"
+      Interpolate	      on
+    }
+    Block {
       BlockType		      From
       GotoTag		      "A"
       IconDisplay	      "Tag"
@@ -950,9 +963,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      Terminator
-    }
-    Block {
       BlockType		      TriggerPort
       TriggerType	      "rising"
       StatesWhenEnabling      "inherit"
@@ -972,7 +982,7 @@ Model {
   }
   System {
     Name		    "tres_dummy"
-    Location		    [238, 52, 1174, 768]
+    Location		    [73, 157, 1061, 994]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -986,19 +996,15 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "150"
+    SIDHighWatermark	    "266"
     Block {
       BlockType		      Demux
       Name		      "Demux"
-      SID		      "31"
-      Ports		      [1, 2]
-      Position		      [376, 55, 414, 60]
-      ZOrder		      -7
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
+      SID		      "151"
+      Ports		      [1, 4]
+      Position		      [425, 68, 430, 137]
+      ZOrder		      5
       ShowName		      off
-      Outputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
@@ -1006,11 +1012,8 @@ Model {
       Name		      "Demux1"
       SID		      "34"
       Ports		      [1, 2]
-      Position		      [586, 55, 624, 60]
-      ZOrder		      -7
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
+      Position		      [205, 101, 210, 139]
+      ZOrder		      12
       ShowName		      off
       Outputs		      "2"
       DisplayOption	      "bar"
@@ -1018,26 +1021,10 @@ Model {
     Block {
       BlockType		      Demux
       Name		      "Demux2"
-      SID		      "89"
-      Ports		      [1, 4]
-      Position		      [99, 255, 261, 260]
-      ZOrder		      -7
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
-      ShowName		      off
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Demux
-      Name		      "Demux3"
-      SID		      "107"
+      SID		      "159"
       Ports		      [1, 6]
-      Position		      [194, 430, 436, 435]
-      ZOrder		      -7
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
+      Position		      [660, 49, 665, 156]
+      ZOrder		      21
       ShowName		      off
       Outputs		      "6"
       DisplayOption	      "bar"
@@ -1046,41 +1033,40 @@ Model {
       BlockType		      From
       Name		      "From"
       SID		      "33"
-      Position		      [384, 15, 406, 40]
+      Position		      [339, 50, 361, 75]
       ZOrder		      -9
       BlockRotation	      270
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
+      GotoTag		      "A1"
     }
     Block {
       BlockType		      From
       Name		      "From1"
       SID		      "35"
-      Position		      [594, 15, 616, 40]
+      Position		      [579, 50, 601, 75]
       ZOrder		      -9
       BlockRotation	      270
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
+      GotoTag		      "A2"
     }
     Block {
       BlockType		      From
       Name		      "From10"
-      SID		      "108"
-      Position		      [304, 380, 326, 405]
-      ZOrder		      -9
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
+      SID		      "266"
+      Position		      [25, 263, 65, 287]
+      ZOrder		      41
       ShowName		      off
-      GotoTag		      "S2"
+      GotoTag		      "S1_1"
     }
     Block {
       BlockType		      From
       Name		      "From11"
       SID		      "109"
-      Position		      [615, 354, 640, 376]
+      Position		      [640, 354, 665, 376]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "H1"
@@ -1089,7 +1075,7 @@ Model {
       BlockType		      From
       Name		      "From12"
       SID		      "110"
-      Position		      [615, 379, 640, 401]
+      Position		      [640, 379, 665, 401]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "H2"
@@ -1098,16 +1084,88 @@ Model {
       BlockType		      From
       Name		      "From13"
       SID		      "145"
-      Position		      [615, 404, 640, 426]
+      Position		      [640, 404, 665, 426]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "H3"
     }
     Block {
       BlockType		      From
+      Name		      "From2"
+      SID		      "263"
+      Position		      [110, 263, 150, 287]
+      ZOrder		      38
+      ShowName		      off
+      GotoTag		      "F1_1"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From20"
+      SID		      "166"
+      Position		      [105, 448, 145, 472]
+      ZOrder		      22
+      ShowName		      off
+      GotoTag		      "F1_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From21"
+      SID		      "167"
+      Position		      [205, 448, 245, 472]
+      ZOrder		      23
+      ShowName		      off
+      GotoTag		      "S2_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From22"
+      SID		      "168"
+      Position		      [300, 448, 340, 472]
+      ZOrder		      24
+      ShowName		      off
+      GotoTag		      "F2_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From23"
+      SID		      "169"
+      Position		      [20, 448, 60, 472]
+      ZOrder		      25
+      ShowName		      off
+      GotoTag		      "S1_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From24"
+      SID		      "170"
+      Position		      [390, 448, 430, 472]
+      ZOrder		      26
+      ShowName		      off
+      GotoTag		      "S3_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From25"
+      SID		      "171"
+      Position		      [485, 448, 525, 472]
+      ZOrder		      27
+      ShowName		      off
+      GotoTag		      "F3_2"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From3"
+      SID		      "264"
+      Position		      [210, 263, 250, 287]
+      ZOrder		      39
+      ShowName		      off
+      GotoTag		      "S2_1"
+    }
+    Block {
+      BlockType		      From
       Name		      "From4"
       SID		      "38"
-      Position		      [50, 79, 75, 101]
+      Position		      [30, 89, 55, 111]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "T"
@@ -1116,7 +1174,7 @@ Model {
       BlockType		      From
       Name		      "From5"
       SID		      "39"
-      Position		      [715, 19, 740, 41]
+      Position		      [785, 89, 810, 111]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "T1"
@@ -1125,7 +1183,7 @@ Model {
       BlockType		      From
       Name		      "From6"
       SID		      "40"
-      Position		      [715, 39, 740, 61]
+      Position		      [785, 109, 810, 131]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "T2"
@@ -1133,20 +1191,17 @@ Model {
     Block {
       BlockType		      From
       Name		      "From7"
-      SID		      "90"
-      Position		      [169, 205, 191, 230]
-      ZOrder		      -9
-      BlockRotation	      270
-      BlockMirror	      on
-      NamePlacement	      "alternate"
+      SID		      "265"
+      Position		      [305, 263, 345, 287]
+      ZOrder		      40
       ShowName		      off
-      GotoTag		      "S1"
+      GotoTag		      "F2_1"
     }
     Block {
       BlockType		      From
       Name		      "From8"
       SID		      "103"
-      Position		      [615, 304, 640, 326]
+      Position		      [640, 304, 665, 326]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "G1"
@@ -1155,25 +1210,16 @@ Model {
       BlockType		      From
       Name		      "From9"
       SID		      "104"
-      Position		      [615, 324, 640, 346]
+      Position		      [640, 324, 665, 346]
       ZOrder		      -9
       ShowName		      off
       GotoTag		      "G2"
     }
     Block {
       BlockType		      Goto
-      Name		      "Goto1"
-      SID		      "42"
-      Position		      [695, 93, 725, 117]
-      ZOrder		      -10
-      ShowName		      off
-      GotoTag		      "S2"
-    }
-    Block {
-      BlockType		      Goto
       Name		      "Goto10"
       SID		      "111"
-      Position		      [225, 568, 255, 592]
+      Position		      [250, 568, 280, 592]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "H1"
@@ -1182,7 +1228,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto11"
       SID		      "112"
-      Position		      [385, 568, 415, 592]
+      Position		      [410, 568, 440, 592]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "H2"
@@ -1191,33 +1237,124 @@ Model {
       BlockType		      Goto
       Name		      "Goto12"
       SID		      "144"
-      Position		      [565, 498, 595, 522]
+      Position		      [590, 498, 620, 522]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "H3"
     }
     Block {
       BlockType		      Goto
+      Name		      "Goto13"
+      SID		      "152"
+      Position		      [450, 102, 505, 118]
+      ZOrder		      1
+      ShowName		      off
+      GotoTag		      "S2_1"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto14"
+      SID		      "153"
+      Position		      [450, 117, 505, 133]
+      ZOrder		      2
+      ShowName		      off
+      GotoTag		      "F2_1"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto15"
+      SID		      "157"
+      Position		      [225, 118, 255, 142]
+      ZOrder		      13
+      ShowName		      off
+      GotoTag		      "A2"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto16"
+      SID		      "160"
+      Position		      [685, 87, 740, 103]
+      ZOrder		      15
+      ShowName		      off
+      GotoTag		      "S2_2"
+    }
+    Block {
+      BlockType		      Goto
       Name		      "Goto2"
       SID		      "43"
-      Position		      [790, 28, 820, 52]
+      Position		      [860, 98, 890, 122]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "T"
     }
     Block {
       BlockType		      Goto
+      Name		      "Goto20"
+      SID		      "161"
+      Position		      [685, 102, 740, 118]
+      ZOrder		      16
+      ShowName		      off
+      GotoTag		      "F2_2"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto21"
+      SID		      "162"
+      Position		      [685, 72, 740, 88]
+      ZOrder		      17
+      ShowName		      off
+      GotoTag		      "F1_2"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto22"
+      SID		      "163"
+      Position		      [685, 57, 740, 73]
+      ZOrder		      18
+      ShowName		      off
+      GotoTag		      "S1_2"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto23"
+      SID		      "164"
+      Position		      [685, 117, 740, 133]
+      ZOrder		      19
+      ShowName		      off
+      GotoTag		      "S3_2"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto24"
+      SID		      "165"
+      Position		      [685, 132, 740, 148]
+      ZOrder		      20
+      ShowName		      off
+      GotoTag		      "F3_2"
+    }
+    Block {
+      BlockType		      Goto
       Name		      "Goto3"
       SID		      "44"
-      Position		      [235, 98, 265, 122]
+      Position		      [225, 98, 255, 122]
       ZOrder		      -10
       ShowName		      off
+      GotoTag		      "A1"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto4"
+      SID		      "154"
+      Position		      [450, 87, 505, 103]
+      ZOrder		      3
+      ShowName		      off
+      GotoTag		      "F1_1"
     }
     Block {
       BlockType		      Goto
       Name		      "Goto5"
       SID		      "51"
-      Position		      [695, 118, 725, 142]
+      Position		      [660, 153, 690, 177]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "T2"
@@ -1226,7 +1363,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto6"
       SID		      "101"
-      Position		      [220, 373, 250, 397]
+      Position		      [245, 373, 275, 397]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "G1"
@@ -1234,17 +1371,17 @@ Model {
     Block {
       BlockType		      Goto
       Name		      "Goto7"
-      SID		      "54"
-      Position		      [465, 93, 495, 117]
-      ZOrder		      -10
+      SID		      "155"
+      Position		      [450, 72, 505, 88]
+      ZOrder		      4
       ShowName		      off
-      GotoTag		      "S1"
+      GotoTag		      "S1_1"
     }
     Block {
       BlockType		      Goto
       Name		      "Goto8"
       SID		      "55"
-      Position		      [465, 118, 495, 142]
+      Position		      [430, 138, 460, 162]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "T1"
@@ -1253,7 +1390,7 @@ Model {
       BlockType		      Goto
       Name		      "Goto9"
       SID		      "102"
-      Position		      [385, 313, 415, 337]
+      Position		      [410, 313, 440, 337]
       ZOrder		      -10
       ShowName		      off
       GotoTag		      "G2"
@@ -1262,7 +1399,7 @@ Model {
       BlockType		      Ground
       Name		      "Ground"
       SID		      "150"
-      Position		      [50, 115, 70, 135]
+      Position		      [30, 125, 50, 145]
       ZOrder		      -12
       ShowName		      off
     }
@@ -1271,9 +1408,9 @@ Model {
       Name		      "Kernel"
       SID		      "149"
       Ports		      [2, 1]
-      Position		      [100, 74, 210, 141]
+      Position		      [75, 84, 185, 151]
       ZOrder		      -5
-      LibraryVersion	      "1.45"
+      LibraryVersion	      "1.66"
       SourceBlock	      "tres_simulink_blockset/Kernel"
       SourceType	      ""
       taskset_descr_name      "task_set_descr"
@@ -1286,56 +1423,147 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Latch1_1"
-      SID		      "73"
-      Ports		      [1, 1, 0, 1]
-      Position		      [105, 304, 170, 346]
-      ZOrder		      -14
+      SID		      "185"
+      Ports		      [1, 1, 1]
+      Position		      [130, 304, 195, 346]
+      ZOrder		      30
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Latch1_1"
-	Location		[398, 280, 944, 815]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "74"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "186"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "75"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "189"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "190"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Latch1_1"
+	  SID			  "73"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  12
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Latch1_1"
+	    Location		    [398, 280, 944, 815]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "74"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "75"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "76"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "76"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "188"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
+	  ZOrder		  4
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Latch1_1"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
 	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Latch1_1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "Latch1_1"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
 	  DstPort		  1
@@ -1345,56 +1573,147 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Latch1_2"
-      SID		      "113"
-      Ports		      [1, 1, 0, 1]
-      Position		      [105, 489, 170, 531]
-      ZOrder		      -14
+      SID		      "212"
+      Ports		      [1, 1, 1]
+      Position		      [130, 489, 195, 531]
+      ZOrder		      33
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Latch1_2"
-	Location		[398, 280, 944, 815]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "114"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "213"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "115"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "214"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "215"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Latch1_2"
+	  SID			  "113"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  13
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Latch1_2"
+	    Location		    [398, 280, 944, 815]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "114"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "115"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "116"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "116"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "220"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Latch1_2"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
 	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Latch1_2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "Latch1_2"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
 	  DstPort		  1
@@ -1404,56 +1723,147 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Latch2_1"
-      SID		      "84"
-      Ports		      [1, 1, 0, 1]
-      Position		      [295, 304, 360, 346]
-      ZOrder		      -14
+      SID		      "200"
+      Ports		      [1, 1, 1]
+      Position		      [320, 304, 385, 346]
+      ZOrder		      32
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Latch2_1"
-	Location		[398, 280, 944, 815]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "85"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "201"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "86"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "202"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "203"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Latch2_1"
+	  SID			  "84"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  14
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Latch2_1"
+	    Location		    [398, 280, 944, 815]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "85"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "86"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "87"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "87"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "211"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Latch2_1"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
 	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Latch2_1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "Latch2_1"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
 	  DstPort		  1
@@ -1463,56 +1873,147 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Latch2_2"
-      SID		      "117"
-      Ports		      [1, 1, 0, 1]
-      Position		      [295, 489, 360, 531]
-      ZOrder		      -14
+      SID		      "230"
+      Ports		      [1, 1, 1]
+      Position		      [315, 489, 380, 531]
+      ZOrder		      35
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Latch2_2"
-	Location		[398, 280, 944, 815]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "118"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "231"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "119"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "232"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "233"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Latch2_2"
+	  SID			  "117"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  15
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Latch2_2"
+	    Location		    [398, 280, 944, 815]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "118"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "119"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "120"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "120"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "241"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Latch2_2"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
 	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Latch2_2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "Latch2_2"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
 	  DstPort		  1
@@ -1522,56 +2023,147 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Latch3_2"
-      SID		      "133"
-      Ports		      [1, 1, 0, 1]
-      Position		      [480, 489, 545, 531]
-      ZOrder		      -14
+      SID		      "251"
+      Ports		      [1, 1, 1]
+      Position		      [505, 489, 570, 531]
+      ZOrder		      37
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Latch3_2"
-	Location		[398, 280, 944, 815]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "134"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "252"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "135"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "253"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
+	}
+	Block {
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "254"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Latch3_2"
+	  SID			  "133"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  17
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Latch3_2"
+	    Location		    [73, 101, 1061, 938]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "134"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "135"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "136"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "136"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "262"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Latch3_2"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  2
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
 	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Latch3_2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "Latch3_2"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
 	  DstPort		  1
@@ -1583,7 +2175,7 @@ Model {
       Name		      "Mux"
       SID		      "32"
       Ports		      [2, 1]
-      Position		      [760, 21, 765, 59]
+      Position		      [830, 91, 835, 129]
       ZOrder		      -16
       ShowName		      off
       Inputs		      "2"
@@ -1594,7 +2186,7 @@ Model {
       Name		      "Mux1"
       SID		      "106"
       Ports		      [2, 1]
-      Position		      [660, 306, 665, 344]
+      Position		      [685, 306, 690, 344]
       ZOrder		      -16
       ShowName		      off
       Inputs		      "2"
@@ -1605,7 +2197,7 @@ Model {
       Name		      "Mux2"
       SID		      "121"
       Ports		      [3, 1]
-      Position		      [660, 351, 665, 429]
+      Position		      [685, 351, 690, 429]
       ZOrder		      -16
       ShowName		      off
       Inputs		      "3"
@@ -1616,13 +2208,13 @@ Model {
       Name		      "Scope"
       SID		      "88"
       Ports		      [2]
-      Position		      [760, 291, 875, 424]
+      Position		      [785, 291, 900, 424]
       ZOrder		      -3
       Floating		      off
-      Location		      [236, 99, 1068, 639]
-      Open		      on
+      Location		      [103, 196, 935, 736]
+      Open		      off
       NumInputPorts	      "2"
-      ZoomMode		      "yonly"
+      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -1647,58 +2239,134 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Seg1_1"
-      SID		      "69"
-      Ports		      [0, 1, 0, 1]
-      Position		      [15, 304, 80, 346]
-      ZOrder		      -14
+      SID		      "172"
+      Ports		      [0, 1, 1]
+      Position		      [40, 304, 105, 346]
+      ZOrder		      28
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Seg1_1"
-	Location		[33, 251, 579, 786]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "71"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "174"
+	  Ports			  [0, 1]
+	  Position		  [195, 100, 215, 120]
 	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  ShowOutputPort	  on
 	}
 	Block {
-	  BlockType		  DigitalClock
-	  Name			  "Digital Clock"
-	  SID			  "96"
-	  Position		  [130, 98, 195, 122]
-	  ZOrder		  -8
-	  SampleTime		  "-1"
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "176"
+	  Ports			  [1, 1]
+	  Position		  [245, 77, 315, 143]
+	  ZOrder		  9
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Seg1_1"
+	  SID			  "69"
+	  Ports			  [0, 1, 0, 1]
+	  Position		  [305, 179, 370, 221]
+	  ZOrder		  10
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Seg1_1"
+	    Location		    [73, 101, 1061, 938]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "71"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      DigitalClock
+	      Name		      "Digital Clock"
+	      SID		      "96"
+	      Position		      [130, 98, 195, 122]
+	      ZOrder		      -8
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "72"
+	      Position		      [245, 103, 275, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Digital Clock"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "72"
-	  Position		  [245, 103, 275, 117]
+	  SID			  "175"
+	  Position		  [405, 193, 435, 207]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Digital Clock"
+	  ZOrder		  2
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Seg1_1"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "Seg1_1"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  4
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
 	  DstPort		  1
 	}
       }
@@ -1706,58 +2374,134 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Seg1_2"
-      SID		      "122"
-      Ports		      [0, 1, 0, 1]
-      Position		      [15, 489, 80, 531]
-      ZOrder		      -14
+      SID		      "177"
+      Ports		      [0, 1, 1]
+      Position		      [40, 489, 105, 531]
+      ZOrder		      29
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Seg1_2"
-	Location		[33, 251, 579, 786]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "123"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "178"
+	  Ports			  [0, 1]
+	  Position		  [195, 100, 215, 120]
 	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  ShowOutputPort	  on
 	}
 	Block {
-	  BlockType		  DigitalClock
-	  Name			  "Digital Clock"
-	  SID			  "124"
-	  Position		  [130, 98, 195, 122]
-	  ZOrder		  -8
-	  SampleTime		  "-1"
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "179"
+	  Ports			  [1, 1]
+	  Position		  [245, 77, 315, 143]
+	  ZOrder		  9
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Seg1_2"
+	  SID			  "122"
+	  Ports			  [0, 1, 0, 1]
+	  Position		  [305, 179, 370, 221]
+	  ZOrder		  11
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Seg1_2"
+	    Location		    [33, 251, 579, 786]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "123"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      DigitalClock
+	      Name		      "Digital Clock"
+	      SID		      "124"
+	      Position		      [130, 98, 195, 122]
+	      ZOrder		      -8
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "125"
+	      Position		      [245, 103, 275, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Digital Clock"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "125"
-	  Position		  [245, 103, 275, 117]
+	  SID			  "184"
+	  Position		  [405, 193, 435, 207]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Digital Clock"
+	  ZOrder		  4
+	  SrcBlock		  "Enable2Fcall"
+	  SrcPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Seg1_2"
+	  DstPort		  trigger
+	}
+	Line {
+	  ZOrder		  3
+	  SrcBlock		  "Seg1_2"
 	  SrcPort		  1
 	  DstBlock		  "Out1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "Enable"
+	  SrcPort		  1
+	  DstBlock		  "Enable2Fcall"
 	  DstPort		  1
 	}
       }
@@ -1765,113 +2509,204 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Seg2_1"
-      SID		      "77"
-      Ports		      [1, 1, 0, 1]
-      Position		      [200, 304, 265, 346]
-      ZOrder		      -14
+      SID		      "191"
+      Ports		      [1, 1, 1]
+      Position		      [230, 304, 295, 346]
+      ZOrder		      31
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Seg2_1"
-	Location		[53, 302, 599, 837]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "78"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "192"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "79"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "193"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
 	}
 	Block {
-	  BlockType		  DigitalClock
-	  Name			  "Digital Clock"
-	  SID			  "97"
-	  Position		  [165, 143, 230, 167]
-	  ZOrder		  -8
-	  SampleTime		  "-1"
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "194"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "99"
-	  Position		  [175, 95, 205, 125]
-	  ZOrder		  -8
-	  Gain			  "0"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "82"
-	  Ports			  [2, 1]
-	  Position		  [250, 100, 270, 120]
-	  ZOrder		  -18
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
+	  BlockType		  SubSystem
+	  Name			  "Seg2_1"
+	  SID			  "77"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  13
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Seg2_1"
+	    Location		    [53, 302, 599, 837]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "78"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "79"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      DigitalClock
+	      Name		      "Digital Clock"
+	      SID		      "97"
+	      Position		      [165, 143, 230, 167]
+	      ZOrder		      -8
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      "99"
+	      Position		      [175, 95, 205, 125]
+	      ZOrder		      -8
+	      Gain		      "0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "82"
+	      Ports		      [2, 1]
+	      Position		      [250, 100, 270, 120]
+	      ZOrder		      -18
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "80"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Digital Clock"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "80"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "199"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Sum"
+	  ZOrder		  5
+	  SrcBlock		  "Enable2Fcall"
 	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Seg2_1"
+	  DstPort		  trigger
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "Digital Clock"
+	  SrcBlock		  "Enable"
 	  SrcPort		  1
-	  Points		  [25, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "Gain"
+	  DstBlock		  "Enable2Fcall"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Gain"
+	  ZOrder		  7
+	  SrcBlock		  "In1"
 	  SrcPort		  1
-	  DstBlock		  "Sum"
+	  DstBlock		  "Seg2_1"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  6
+	  SrcBlock		  "Seg2_1"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
 	  DstPort		  1
 	}
       }
@@ -1879,113 +2714,204 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Seg2_2"
-      SID		      "126"
-      Ports		      [1, 1, 0, 1]
-      Position		      [200, 489, 265, 531]
-      ZOrder		      -14
+      SID		      "221"
+      Ports		      [1, 1, 1]
+      Position		      [230, 489, 295, 531]
+      ZOrder		      34
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Seg2_2"
-	Location		[53, 302, 599, 837]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "127"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "222"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "128"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "223"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
 	}
 	Block {
-	  BlockType		  DigitalClock
-	  Name			  "Digital Clock"
-	  SID			  "129"
-	  Position		  [165, 143, 230, 167]
-	  ZOrder		  -8
-	  SampleTime		  "-1"
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "224"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "130"
-	  Position		  [175, 95, 205, 125]
-	  ZOrder		  -8
-	  Gain			  "0"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "131"
-	  Ports			  [2, 1]
-	  Position		  [250, 100, 270, 120]
-	  ZOrder		  -18
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
+	  BlockType		  SubSystem
+	  Name			  "Seg2_2"
+	  SID			  "126"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  14
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Seg2_2"
+	    Location		    [53, 302, 599, 837]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "127"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "128"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      DigitalClock
+	      Name		      "Digital Clock"
+	      SID		      "129"
+	      Position		      [165, 143, 230, 167]
+	      ZOrder		      -8
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      "130"
+	      Position		      [175, 95, 205, 125]
+	      ZOrder		      -8
+	      Gain		      "0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "131"
+	      Ports		      [2, 1]
+	      Position		      [250, 100, 270, 120]
+	      ZOrder		      -18
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "132"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Digital Clock"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "132"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "229"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Sum"
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
 	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Seg2_2"
+	  DstPort		  trigger
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "Digital Clock"
+	  SrcBlock		  "Enable"
 	  SrcPort		  1
-	  Points		  [25, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "Gain"
+	  DstBlock		  "Enable2Fcall"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Gain"
+	  ZOrder		  5
+	  SrcBlock		  "In1"
 	  SrcPort		  1
-	  DstBlock		  "Sum"
+	  DstBlock		  "Seg2_2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  7
+	  SrcBlock		  "Seg2_2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
 	  DstPort		  1
 	}
       }
@@ -1993,113 +2919,204 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Seg3_2"
-      SID		      "137"
-      Ports		      [1, 1, 0, 1]
-      Position		      [385, 489, 450, 531]
-      ZOrder		      -14
+      SID		      "242"
+      Ports		      [1, 1, 1]
+      Position		      [410, 489, 475, 531]
+      ZOrder		      36
       TreatAsAtomicUnit	      on
       RequestExecContextInheritance off
       System {
 	Name			"Seg3_2"
-	Location		[53, 302, 599, 837]
+	Location		[73, 101, 1061, 938]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
 	PaperOrientation	"landscape"
 	PaperPositionMode	"auto"
-	PaperType		"usletter"
-	PaperUnits		"inches"
-	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
 	Block {
 	  BlockType		  Inport
 	  Name			  "In1"
-	  SID			  "138"
-	  Position		  [110, 103, 140, 117]
+	  SID			  "243"
+	  Position		  [220, 253, 250, 267]
 	  ZOrder		  -1
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  TriggerPort
-	  Name			  "function"
-	  SID			  "139"
-	  Ports			  []
-	  Position		  [210, 15, 230, 35]
-	  ZOrder		  -2
-	  TriggerType		  "function-call"
-	  StatesWhenEnabling	  "held"
+	  BlockType		  EnablePort
+	  Name			  "Enable"
+	  SID			  "244"
+	  Ports			  [0, 1]
+	  Position		  [210, 105, 230, 125]
+	  ZOrder		  10
+	  ShowOutputPort	  on
 	}
 	Block {
-	  BlockType		  DigitalClock
-	  Name			  "Digital Clock"
-	  SID			  "140"
-	  Position		  [165, 143, 230, 167]
-	  ZOrder		  -8
-	  SampleTime		  "-1"
+	  BlockType		  Reference
+	  Name			  "Enable2Fcall"
+	  SID			  "245"
+	  Ports			  [1, 1]
+	  Position		  [260, 82, 330, 148]
+	  ZOrder		  11
+	  LibraryVersion	  "1.66"
+	  SourceBlock		  "tres_simulink_blockset/Enable2Fcall"
+	  SourceType		  ""
 	}
 	Block {
-	  BlockType		  Gain
-	  Name			  "Gain"
-	  SID			  "141"
-	  Position		  [175, 95, 205, 125]
-	  ZOrder		  -8
-	  Gain			  "0"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  "142"
-	  Ports			  [2, 1]
-	  Position		  [250, 100, 270, 120]
-	  ZOrder		  -18
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
+	  BlockType		  SubSystem
+	  Name			  "Seg3_2"
+	  SID			  "137"
+	  Ports			  [1, 1, 0, 1]
+	  Position		  [320, 239, 385, 281]
+	  ZOrder		  16
+	  TreatAsAtomicUnit	  on
+	  RequestExecContextInheritance	off
+	  System {
+	    Name		    "Seg3_2"
+	    Location		    [53, 302, 599, 837]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      SID		      "138"
+	      Position		      [110, 103, 140, 117]
+	      ZOrder		      -1
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "function"
+	      SID		      "139"
+	      Ports		      []
+	      Position		      [210, 15, 230, 35]
+	      ZOrder		      -2
+	      TriggerType	      "function-call"
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      DigitalClock
+	      Name		      "Digital Clock"
+	      SID		      "140"
+	      Position		      [165, 143, 230, 167]
+	      ZOrder		      -8
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Gain
+	      Name		      "Gain"
+	      SID		      "141"
+	      Position		      [175, 95, 205, 125]
+	      ZOrder		      -8
+	      Gain		      "0"
+	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Sum
+	      Name		      "Sum"
+	      SID		      "142"
+	      Ports		      [2, 1]
+	      Position		      [250, 100, 270, 120]
+	      ZOrder		      -18
+	      ShowName		      off
+	      IconShape		      "round"
+	      Inputs		      "|++"
+	      InputSameDT	      off
+	      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+	      SaturateOnIntegerOverflow	off
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Out1"
+	      SID		      "143"
+	      Position		      [360, 103, 390, 117]
+	      ZOrder		      -3
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      ZOrder		      1
+	      SrcBlock		      "Sum"
+	      SrcPort		      1
+	      DstBlock		      "Out1"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      2
+	      SrcBlock		      "Digital Clock"
+	      SrcPort		      1
+	      Points		      [25, 0]
+	      DstBlock		      "Sum"
+	      DstPort		      2
+	    }
+	    Line {
+	      ZOrder		      3
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "Gain"
+	      DstPort		      1
+	    }
+	    Line {
+	      ZOrder		      4
+	      SrcBlock		      "Gain"
+	      SrcPort		      1
+	      DstBlock		      "Sum"
+	      DstPort		      1
+	    }
+	  }
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
-	  SID			  "143"
-	  Position		  [360, 103, 390, 117]
+	  SID			  "250"
+	  Position		  [470, 253, 500, 267]
 	  ZOrder		  -3
 	  IconDisplay		  "Port number"
 	}
 	Line {
-	  ZOrder		  1
-	  SrcBlock		  "Sum"
+	  ZOrder		  6
+	  SrcBlock		  "Enable2Fcall"
 	  SrcPort		  1
-	  DstBlock		  "Out1"
-	  DstPort		  1
+	  Points		  [15, 0]
+	  DstBlock		  "Seg3_2"
+	  DstPort		  trigger
 	}
 	Line {
 	  ZOrder		  2
-	  SrcBlock		  "Digital Clock"
+	  SrcBlock		  "Enable"
 	  SrcPort		  1
-	  Points		  [25, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  ZOrder		  3
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "Gain"
+	  DstBlock		  "Enable2Fcall"
 	  DstPort		  1
 	}
 	Line {
-	  ZOrder		  4
-	  SrcBlock		  "Gain"
+	  ZOrder		  7
+	  SrcBlock		  "In1"
 	  SrcPort		  1
-	  DstBlock		  "Sum"
+	  DstBlock		  "Seg3_2"
+	  DstPort		  1
+	}
+	Line {
+	  ZOrder		  5
+	  SrcBlock		  "Seg3_2"
+	  SrcPort		  1
+	  DstBlock		  "Out1"
 	  DstPort		  1
 	}
       }
@@ -2107,12 +3124,12 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "Task1"
-      SID		      "147"
+      SID		      "156"
       Ports		      [0, 2, 0, 1]
-      Position		      [340, 91, 435, 144]
-      ZOrder		      -14
-      LibraryVersion	      "1.45"
-      SourceBlock	      "tres_simulink_blockset/Task"
+      Position		      [305, 92, 400, 148]
+      ZOrder		      11
+      LibraryVersion	      "1.66"
+      SourceBlock	      "tres_simulink_blockset/Task_df"
       SourceType	      ""
       ContentPreviewEnabled   off
       conf_name		      "t1_instrs"
@@ -2120,47 +3137,15 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "Task2"
-      SID		      "148"
+      SID		      "158"
       Ports		      [0, 2, 0, 1]
-      Position		      [570, 91, 665, 144]
-      ZOrder		      -14
-      LibraryVersion	      "1.45"
-      SourceBlock	      "tres_simulink_blockset/Task"
+      Position		      [545, 92, 640, 148]
+      ZOrder		      14
+      LibraryVersion	      "1.66"
+      SourceBlock	      "tres_simulink_blockset/Task_df"
       SourceType	      ""
       ContentPreviewEnabled   off
       conf_name		      "t2_instrs"
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator"
-      SID		      "46"
-      Position		      [535, 65, 555, 85]
-      ZOrder		      -5
-      BlockMirror	      on
-      NamePlacement	      "alternate"
-      ShowName		      off
-    }
-    Block {
-      BlockType		      Terminator
-      Name		      "Terminator1"
-      SID		      "47"
-      Position		      [450, 65, 470, 85]
-      ZOrder		      -5
-      ShowName		      off
-    }
-    Line {
-      ZOrder		      1
-      SrcBlock		      "From"
-      SrcPort		      1
-      DstBlock		      "Demux"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      2
-      SrcBlock		      "From1"
-      SrcPort		      1
-      DstBlock		      "Demux1"
-      DstPort		      1
     }
     Line {
       ZOrder		      3
@@ -2191,84 +3176,42 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      7
-      SrcBlock		      "Kernel"
-      SrcPort		      1
-      DstBlock		      "Goto3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      8
-      SrcBlock		      "Demux"
-      SrcPort		      1
-      DstBlock		      "Task1"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      9
-      SrcBlock		      "Demux"
-      SrcPort		      2
-      Points		      [0, 10]
-      DstBlock		      "Terminator1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      10
-      SrcBlock		      "Demux1"
-      SrcPort		      2
-      DstBlock		      "Task2"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      11
-      SrcBlock		      "Demux1"
-      SrcPort		      1
-      Points		      [0, 10]
-      DstBlock		      "Terminator"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      12
+      ZOrder		      64
       SrcBlock		      "Task2"
       SrcPort		      2
+      Points		      [5, 0; 0, 30]
       DstBlock		      "Goto5"
       DstPort		      1
     }
     Line {
-      ZOrder		      13
+      ZOrder		      72
       SrcBlock		      "Task2"
       SrcPort		      1
-      DstBlock		      "Goto1"
+      DstBlock		      "Demux2"
       DstPort		      1
     }
     Line {
-      ZOrder		      14
+      ZOrder		      59
       SrcBlock		      "Task1"
       SrcPort		      2
+      Points		      [9, 0; 0, 15]
       DstBlock		      "Goto8"
       DstPort		      1
     }
     Line {
-      ZOrder		      15
-      SrcBlock		      "Task1"
-      SrcPort		      1
-      DstBlock		      "Goto7"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      16
+      ZOrder		      90
       SrcBlock		      "Seg1_1"
       SrcPort		      1
       DstBlock		      "Latch1_1"
       DstPort		      1
     }
     Line {
-      ZOrder		      17
+      ZOrder		      91
       SrcBlock		      "Latch1_1"
       SrcPort		      1
       Points		      [5, 0]
       Branch {
-	ZOrder			18
+	ZOrder			92
 	DstBlock		"Seg2_1"
 	DstPort			1
       }
@@ -2280,57 +3223,18 @@ Model {
       }
     }
     Line {
-      ZOrder		      20
+      ZOrder		      94
       SrcBlock		      "Seg2_1"
       SrcPort		      1
       DstBlock		      "Latch2_1"
       DstPort		      1
     }
     Line {
-      ZOrder		      21
+      ZOrder		      95
       SrcBlock		      "Latch2_1"
       SrcPort		      1
       DstBlock		      "Goto9"
       DstPort		      1
-    }
-    Line {
-      ZOrder		      22
-      SrcBlock		      "Demux2"
-      SrcPort		      1
-      Points		      [0, 10; -75, 0]
-      DstBlock		      "Seg1_1"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      23
-      SrcBlock		      "From7"
-      SrcPort		      1
-      DstBlock		      "Demux2"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      24
-      SrcBlock		      "Demux2"
-      SrcPort		      2
-      Points		      [0, 20; -25, 0]
-      DstBlock		      "Latch1_1"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      25
-      SrcBlock		      "Demux2"
-      SrcPort		      3
-      Points		      [0, 20; 30, 0]
-      DstBlock		      "Seg2_1"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      26
-      SrcBlock		      "Demux2"
-      SrcPort		      4
-      Points		      [0, 20; 85, 0]
-      DstBlock		      "Latch2_1"
-      DstPort		      trigger
     }
     Line {
       ZOrder		      27
@@ -2354,74 +3258,35 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      30
+      ZOrder		      97
       SrcBlock		      "Seg1_2"
       SrcPort		      1
       DstBlock		      "Latch1_2"
       DstPort		      1
     }
     Line {
-      ZOrder		      31
+      ZOrder		      104
       SrcBlock		      "Seg2_2"
       SrcPort		      1
       DstBlock		      "Latch2_2"
       DstPort		      1
     }
     Line {
-      ZOrder		      32
+      ZOrder		      102
       SrcBlock		      "Latch2_2"
       SrcPort		      1
-      Points		      [0, 0]
+      Points		      [5, 0]
+      Branch {
+	ZOrder			105
+	DstBlock		"Seg3_2"
+	DstPort			1
+      }
       Branch {
 	ZOrder			33
 	Points			[0, 70]
 	DstBlock		"Goto11"
 	DstPort			1
       }
-      Branch {
-	ZOrder			34
-	DstBlock		"Seg3_2"
-	DstPort			1
-      }
-    }
-    Line {
-      ZOrder		      35
-      SrcBlock		      "Demux3"
-      SrcPort		      1
-      Points		      [0, 10; -170, 0]
-      DstBlock		      "Seg1_2"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      36
-      SrcBlock		      "From10"
-      SrcPort		      1
-      DstBlock		      "Demux3"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      37
-      SrcBlock		      "Demux3"
-      SrcPort		      2
-      Points		      [0, 20; -120, 0]
-      DstBlock		      "Latch1_2"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      38
-      SrcBlock		      "Demux3"
-      SrcPort		      3
-      Points		      [0, 34]
-      DstBlock		      "Seg2_2"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      39
-      SrcBlock		      "Demux3"
-      SrcPort		      4
-      Points		      [0, 34]
-      DstBlock		      "Latch2_2"
-      DstPort		      trigger
     }
     Line {
       ZOrder		      40
@@ -2438,51 +3303,35 @@ Model {
       DstPort		      2
     }
     Line {
-      ZOrder		      42
+      ZOrder		      96
       SrcBlock		      "Latch1_2"
       SrcPort		      1
       Points		      [10, 0]
+      Branch {
+	ZOrder			99
+	DstBlock		"Seg2_2"
+	DstPort			1
+      }
       Branch {
 	ZOrder			43
 	Points			[0, 70]
 	DstBlock		"Goto10"
 	DstPort			1
       }
-      Branch {
-	ZOrder			44
-	DstBlock		"Seg2_2"
-	DstPort			1
-      }
     }
     Line {
-      ZOrder		      45
+      ZOrder		      109
       SrcBlock		      "Seg3_2"
       SrcPort		      1
       DstBlock		      "Latch3_2"
       DstPort		      1
     }
     Line {
-      ZOrder		      46
+      ZOrder		      108
       SrcBlock		      "Latch3_2"
       SrcPort		      1
       DstBlock		      "Goto12"
       DstPort		      1
-    }
-    Line {
-      ZOrder		      47
-      SrcBlock		      "Demux3"
-      SrcPort		      5
-      Points		      [0, 15; 40, 0]
-      DstBlock		      "Seg3_2"
-      DstPort		      trigger
-    }
-    Line {
-      ZOrder		      48
-      SrcBlock		      "Demux3"
-      SrcPort		      6
-      Points		      [0, 5; 95, 0]
-      DstBlock		      "Latch3_2"
-      DstPort		      trigger
     }
     Line {
       ZOrder		      49
@@ -2504,6 +3353,195 @@ Model {
       SrcPort		      1
       DstBlock		      "Kernel"
       DstPort		      2
+    }
+    Line {
+      ZOrder		      58
+      SrcBlock		      "Task1"
+      SrcPort		      1
+      DstBlock		      "Demux"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      53
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      DstBlock		      "Goto7"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      54
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      DstBlock		      "Goto4"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      55
+      SrcBlock		      "Demux"
+      SrcPort		      3
+      DstBlock		      "Goto13"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      56
+      SrcBlock		      "Demux"
+      SrcPort		      4
+      DstBlock		      "Goto14"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      61
+      SrcBlock		      "Kernel"
+      SrcPort		      1
+      DstBlock		      "Demux1"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      62
+      SrcBlock		      "Demux1"
+      SrcPort		      2
+      DstBlock		      "Goto15"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      63
+      SrcBlock		      "Demux1"
+      SrcPort		      1
+      DstBlock		      "Goto3"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      65
+      SrcBlock		      "Demux2"
+      SrcPort		      1
+      DstBlock		      "Goto22"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      66
+      SrcBlock		      "Demux2"
+      SrcPort		      2
+      DstBlock		      "Goto21"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      67
+      SrcBlock		      "Demux2"
+      SrcPort		      3
+      DstBlock		      "Goto16"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      68
+      SrcBlock		      "Demux2"
+      SrcPort		      4
+      DstBlock		      "Goto20"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      69
+      SrcBlock		      "Demux2"
+      SrcPort		      5
+      DstBlock		      "Goto23"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      70
+      SrcBlock		      "Demux2"
+      SrcPort		      6
+      DstBlock		      "Goto24"
+      DstPort		      1
+    }
+    Line {
+      ZOrder		      73
+      SrcBlock		      "From1"
+      SrcPort		      1
+      DstBlock		      "Task2"
+      DstPort		      trigger
+    }
+    Line {
+      ZOrder		      74
+      SrcBlock		      "From"
+      SrcPort		      1
+      DstBlock		      "Task1"
+      DstPort		      trigger
+    }
+    Line {
+      ZOrder		      89
+      SrcBlock		      "From23"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Seg1_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      98
+      SrcBlock		      "From20"
+      SrcPort		      1
+      Points		      [10, 0]
+      DstBlock		      "Latch1_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      101
+      SrcBlock		      "From21"
+      SrcPort		      1
+      Points		      [10, 0]
+      DstBlock		      "Seg2_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      103
+      SrcBlock		      "From22"
+      SrcPort		      1
+      DstBlock		      "Latch2_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      106
+      SrcBlock		      "From24"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Seg3_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      110
+      SrcBlock		      "From25"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Latch3_2"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      146
+      SrcBlock		      "From10"
+      SrcPort		      1
+      DstBlock		      "Seg1_1"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      147
+      SrcBlock		      "From2"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Latch1_1"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      145
+      SrcBlock		      "From3"
+      SrcPort		      1
+      Points		      [5, 0]
+      DstBlock		      "Seg2_1"
+      DstPort		      enable
+    }
+    Line {
+      ZOrder		      144
+      SrcBlock		      "From7"
+      SrcPort		      1
+      DstBlock		      "Latch2_1"
+      DstPort		      enable
     }
   }
 }

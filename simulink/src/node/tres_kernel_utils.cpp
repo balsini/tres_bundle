@@ -72,11 +72,18 @@ static std::vector<std::string> cellArrayDescrToVectorOfStrings(const mxArray *m
         mxArray *entity_type = mxGetCell(mx_var, i);
         char *type_name = new char[mxGetN(entity_type)+1];
         mxGetString(entity_type, type_name, mxGetN(entity_type)+1);
-        ss << type_name;
+        ss << type_name << ';';
         delete type_name;
 
+        // Put the entity name into the stringstream
+        mxArray *entity_name = mxGetCell(mx_var, i+num_entries);
+        char *name_string = new char[mxGetN(entity_name)+1];
+        mxGetString(entity_name, name_string, mxGetN(entity_name)+1);
+        ss << name_string << ';';
+        delete name_string;
+
         // Put the other parameters (numerical) into the stringstream
-        for (int j = 1; j < num_params; ++j)
+        for (int j = 2; j < num_params; ++j)
         {
             mxArray *entity_p = mxGetCell(mx_var, (i + num_entries * j));
 
@@ -84,12 +91,9 @@ static std::vector<std::string> cellArrayDescrToVectorOfStrings(const mxArray *m
             if (mxGetM(entity_p)*mxGetN(entity_p) != 0)
             {
                 double *param = mxGetPr(entity_p);
-                ss << ';' << *param;
+                ss << *param << ';';
             }
         }
-
-        // Put the last separator (otherwise the last parameter is ignored!)
-        ss << ';';
 
         // Insert the stringstream into the description vector
         out_descr.push_back(ss.str());
