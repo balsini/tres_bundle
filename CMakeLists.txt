@@ -3,8 +3,8 @@ project (tres_bundle)
 
 include(ExternalProject)
 
-set (METASIM_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rdparty/METASIM")
-set (RTLIB_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rdparty/RTLIB")
+set (METASIM_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM/METASIM")
+set (RTLIB_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM//RTLIB")
 
 message("Using external project folders:")
 message(" - " ${METASIM_SOURCE_DIR})
@@ -13,9 +13,8 @@ message(" - " ${RTLIB_SOURCE_DIR})
 ExternalProject_Add (
     METASIM
     PREFIX METASIM
-    GIT_REPOSITORY "git://github.com/ReTiS-Lab/METASIM.git"
+    URL ${CMAKE_SOURCE_DIR}/3rd_party/RTSIM/METASIM.zip
     INSTALL_COMMAND ""
-    GIT_TAG "master"
     UPDATE_COMMAND ""
     PATCH_COMMAND ""
     SOURCE_DIR ${METASIM_SOURCE_DIR}
@@ -26,9 +25,8 @@ ExternalProject_Add (
     RTLIB
     DEPENDS METASIM
     PREFIX RTLIB
-    GIT_REPOSITORY "git://github.com/ReTiS-Lab/RTLIB.git"
+    URL ${CMAKE_SOURCE_DIR}/3rd_party/RTSIM/RTLIB.zip
     INSTALL_COMMAND ""
-    GIT_TAG "master"
     UPDATE_COMMAND ""
     PATCH_COMMAND ""
     SOURCE_DIR ${RTLIB_SOURCE_DIR}
