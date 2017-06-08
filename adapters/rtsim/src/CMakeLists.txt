@@ -13,6 +13,7 @@ add_library(${TRES_RTSIM_LIB_SOURCE} STATIC KernelRtSim.cpp
                                                             ActiveSimulationManagerRtSim.cpp
                                                             regsched.cpp
                                                             regtask.cpp)
+target_compile_features(${TRES_RTSIM_LIB_SOURCE} PRIVATE cxx_range_for)
 # Link the deps for the library
 target_link_libraries( ${TRES_RTSIM_LIB_SOURCE} ${tres_base_LIBRARIES}
                                                 ${metasim_LIBRARIES} ${rtlib_LIBRARIES} )
