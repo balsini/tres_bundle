@@ -21,8 +21,6 @@ if(TRES_RTSIM_STANDALONE)
 endif()
 
 # Add dep headers to the search path
-include_directories(${metasim_INCLUDE_DIRS})
-include_directories(${rtlib_INCLUDE_DIRS})
 include_directories(${tres_base_INCLUDE_DIRS})
 
 # Interface headers are in "include/tres_rtsim" (global header files,

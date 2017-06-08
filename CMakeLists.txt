@@ -3,8 +3,8 @@ project (tres_bundle)
 
 include(ExternalProject)
 
-set (METASIM_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM/METASIM")
-set (RTLIB_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM//RTLIB")
+set (METASIM_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM/METASIM/src")
+set (RTLIB_SOURCE_DIR "${CMAKE_BINARY_DIR}/3rd_party/RTSIM/RTLIB/src")
 
 message("Using external project folders:")
 message(" - " ${METASIM_SOURCE_DIR})

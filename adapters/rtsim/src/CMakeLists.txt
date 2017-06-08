@@ -1,17 +1,13 @@
+message("RTSIM: Looking for headers in:")
+message(" - " ${METASIM_SOURCE_DIR}/src)
+message(" - " ${RTLIB_SOURCE_DIR}/src)
+
 include_directories(${METASIM_SOURCE_DIR}/src)
 include_directories(${RTLIB_SOURCE_DIR}/src)
 
-# Environment-based settings.
-if(WIN32)
-    set(TRES_RTSIM_LIB_TYPE "STATIC")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++0x")
-	set(TRES_RTSIM_LIB_TYPE "SHARED")
-endif()
-
 # Create a library which includes the source files.
 list(GET tres_rtsim_LIBRARIES 0 TRES_RTSIM_LIB_SOURCE)
-add_library(${TRES_RTSIM_LIB_SOURCE} ${TRES_RTSIM_LIB_TYPE} KernelRtSim.cpp
+add_library(${TRES_RTSIM_LIB_SOURCE} STATIC KernelRtSim.cpp
                                                             SimTaskRtSim.cpp
                                                             EventRtSim.cpp
                                                             ActiveSimulationManagerRtSim.cpp
